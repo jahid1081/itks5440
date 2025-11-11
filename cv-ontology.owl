@@ -7,9 +7,9 @@
 @prefix schema: <http://schema.org/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-@base <https://<your-username>.github.io/cv-ontology.owl> .
+@base <https://github.com/jahid1081/itks5440/blob/main/cv-ontology.owl> .
 
-<https://<your-username>.github.io/cv-ontology.owl> a owl:Ontology ;
+<https://github.com/jahid1081/itks5440/blob/main/cv-ontology.owl> a owl:Ontology ;
   rdfs:label "CV Ontology and Data for M Jahidul Islam" ;
   dcterms:creator "M Jahidul Islam" ;
   owl:imports <http://xmlns.com/foaf/0.1/> ,
@@ -23,7 +23,7 @@
   schema:name "M Jahidul Islam" ;
   schema:nationality [ a schema:Country ; schema:name "Bangladesh" ; schema:sameAs <https://dbpedia.org/resource/Bangladesh> ] ;
   schema:knowsLanguage "Bengali", "English C1", "Finnish A1" ;
-  schema:url <https://<your-username>.github.io/cv.html> .
+  schema:url <https://github.com/jahid1081/itks5440/blob/main/cv.html> .
 
 #################################################################
 # Organizations
