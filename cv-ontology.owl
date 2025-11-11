@@ -1,0 +1,166 @@
+@prefix : <https://<your-username>.github.io/cv-ontology.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+@base <https://<your-username>.github.io/cv-ontology.owl> .
+
+<https://<your-username>.github.io/cv-ontology.owl> a owl:Ontology ;
+  rdfs:label "CV Ontology and Data for M Jahidul Islam" ;
+  dcterms:creator "M Jahidul Islam" ;
+  owl:imports <http://xmlns.com/foaf/0.1/> ,
+              <http://schema.org/> ,
+              <http://purl.org/dc/terms/> .
+
+#################################################################
+# Core person
+#################################################################
+:jahid a foaf:Person , schema:Person ;
+  schema:name "M Jahidul Islam" ;
+  schema:nationality [ a schema:Country ; schema:name "Bangladesh" ; schema:sameAs <https://dbpedia.org/resource/Bangladesh> ] ;
+  schema:knowsLanguage "Bengali", "English C1", "Finnish A1" ;
+  schema:url <https://<your-username>.github.io/cv.html> .
+
+#################################################################
+# Organizations
+#################################################################
+:UCB a schema:Organization ;
+  schema:name "United Commercial Bank PLC" ;
+  schema:url <https://www.ucb.com.bd/> ;
+  schema:address [ a schema:PostalAddress ;
+                   schema:addressLocality "Dhaka" ;
+                   schema:addressCountry "Bangladesh" ] .
+
+:Scholastica a schema:EducationalOrganization ;
+  schema:name "Scholastica" ;
+  schema:url <https://cacdn03.freeli.io/scholastica/> ;
+  schema:address [ a schema:PostalAddress ;
+                   schema:addressLocality "Dhaka" ;
+                   schema:addressCountry "Bangladesh" ] .
+
+:NSU a schema:CollegeOrUniversity ;
+  schema:name "North South University" ;
+  schema:url <https://www.northsouth.edu/> ;
+  schema:address [ a schema:PostalAddress ;
+                   schema:addressLocality "Dhaka" ;
+                   schema:addressCountry "Bangladesh" ] .
+
+:DU a schema:CollegeOrUniversity ;
+  schema:name "University of Dhaka" ;
+  schema:url <https://www.du.ac.bd/> ;
+  schema:address [ a schema:PostalAddress ;
+                   schema:addressLocality "Dhaka" ;
+                   schema:addressCountry "Bangladesh" ] .
+
+:JYU a schema:CollegeOrUniversity ;
+  schema:name "University of Jyväskylä" ;
+  schema:url <https://www.jyu.fi/> ;
+  schema:address [ a schema:PostalAddress ;
+                   schema:addressLocality "Jyväskylä" ;
+                   schema:addressCountry "Finland" ] .
+
+:BCC a schema:EducationalOrganization ;
+  schema:name "Barishal Cadet College" ;
+  schema:url <https://bcc.army.mil.bd/> ;
+  schema:address [ a schema:PostalAddress ;
+                   schema:addressLocality "Barishal" ;
+                   schema:addressCountry "Bangladesh" ] .
+
+#################################################################
+# Employment roles (OrganizationRole pattern)
+#################################################################
+:role-ucb-exec a schema:EmployeeRole ;
+  schema:roleName "Executive Officer" ;
+  schema:startDate "2018-01-03"^^xsd:date ;
+  schema:endDate "2025-01-23"^^xsd:date ;
+  schema:memberOf :UCB .
+
+:role-ucb-access a schema:EmployeeRole ;
+  schema:roleName "Access Control Analyst" ;
+  schema:startDate "2021-11-01"^^xsd:date ;
+  schema:endDate "2025-01-23"^^xsd:date ;
+  schema:memberOf :UCB .
+
+:role-scholastica-teacher a schema:EmployeeRole ;
+  schema:roleName "Computer Science Teacher (IGCSE O/A Levels)" ;
+  schema:startDate "2012-08-13"^^xsd:date ;
+  schema:endDate "2017-06-08"^^xsd:date ;
+  schema:memberOf :Scholastica .
+
+:role-nsu-ta a schema:EmployeeRole ;
+  schema:roleName "Undergraduate Teaching Assistant" ;
+  schema:startDate "2011-01-01"^^xsd:date ;
+  schema:endDate "2011-12-31"^^xsd:date ;
+  schema:memberOf :NSU .
+
+# Link roles to person
+:jahid schema:hasOccupation :role-ucb-exec , :role-ucb-access , :role-scholastica-teacher , :role-nsu-ta ;
+       schema:worksFor :UCB .
+
+#################################################################
+# Degrees / credentials
+#################################################################
+:cred-mit a schema:EducationalOccupationalCredential ;
+  schema:name "Master of Information Technology" ;
+  schema:educationalLevel "Master" ;
+  schema:dateCreated "2014-12-31"^^xsd:date ;
+  schema:recognizedBy :DU .
+
+:cred-bsc a schema:EducationalOccupationalCredential ;
+  schema:name "BSc in Computer Science" ;
+  schema:educationalLevel "Bachelor" ;
+  schema:dateCreated "2011-12-31"^^xsd:date ;
+  schema:recognizedBy :NSU .
+
+:cred-hsc a schema:EducationalOccupationalCredential ;
+  schema:name "Higher Secondary School Certificate" ;
+  schema:educationalLevel "Secondary" ;
+  schema:dateCreated "2005-06-30"^^xsd:date ;
+  schema:recognizedBy :BCC .
+
+:cred-msc a schema:EducationalOccupationalCredential ;
+  schema:name "MSc in Artificial Intelligence" ;
+  schema:educationalLevel "Master" ;
+  schema:recognizedBy :JYU ;
+  schema:validFor [ a schema:Duration ; schema:description "In progress since 2025-02" ] .
+
+:jahid schema:hasCredential :cred-msc , :cred-mit , :cred-bsc , :cred-hsc .
+
+#################################################################
+# Skills (as DefinedTerm)
+#################################################################
+:skill-c a schema:DefinedTerm ; schema:name "C/C++" .
+:skill-python a schema:DefinedTerm ; schema:name "Python" .
+:skill-java a schema:DefinedTerm ; schema:name "Java" .
+:skill-html a schema:DefinedTerm ; schema:name "HTML" .
+:skill-sql a schema:DefinedTerm ; schema:name "SQL" .
+:skill-matlab a schema:DefinedTerm ; schema:name "MATLAB" .
+:skill-office a schema:DefinedTerm ; schema:name "Microsoft Office" .
+
+:jahid schema:knowsAbout :skill-c , :skill-python , :skill-java , :skill-html , :skill-sql , :skill-matlab , :skill-office .
+
+#################################################################
+# Publications (ScholarlyArticle)
+#################################################################
+:paper-ankur-2014 a schema:ScholarlyArticle ;
+  schema:name "Ankur: Bangla Online Character Recognition" ;
+  schema:author :jahid ;
+  schema:datePublished "2014" ;
+  schema:identifier [ a schema:PropertyValue ; schema:propertyID "DOI" ; schema:value "10.1049/cp.2014.1116" ] ;
+  schema:url <https://doi.org/10.1049/cp.2014.1116> .
+
+:paper-lrc-2013 a schema:ScholarlyArticle ;
+  schema:name "Low Resolution Camera for Human Detection and Tracking" ;
+  schema:author :jahid ;
+  schema:datePublished "2013" ;
+  schema:isPartOf [ a schema:PublicationVolume ; schema:name "IT in Industry 1(1)" ] .
+
+:paper-rt-2013 a schema:ScholarlyArticle ;
+  schema:name "Real-time Human Detection and Tracking Using a Very Low Resolution Camera" ;
+  schema:author :jahid ;
+  schema:datePublished "2013" ;
+  schema:isPartOf [ a schema:Event ; schema:name "ICITA 2013" ] .
