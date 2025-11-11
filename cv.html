@@ -1,141 +1,264 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"
+  prefix="
+    cv: https://jahid1081.github.io/itks5440/cv-ontology.owl#
+    foaf: http://xmlns.com/foaf/0.1/
+    schema: http://schema.org/
+    prov: http://www.w3.org/ns/prov#
+    dcterms: http://purl.org/dc/terms/
+  ">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>M Jahidul Islam- CV</title>
-  <link rel="alternate" type="text/turtle" href="cv-ontology.owl" title="RDF/OWL version (Turtle)">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>M Jahidul Islam — CV</title>
+
+  <!-- Directly incorporate the OWL -->
+  <link rel="alternate" type="application/rdf+xml" href="cv-ontology.owl" />
+  <link rel="owl:imports" href="cv-ontology.owl" />
+
   <style>
-    :root { --fg:#111; --muted:#555; --accent:#0a7; --bg:#fff; --card:#f7f7f8; }
-    *{box-sizing:border-box} body{font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--fg);background:var(--bg);margin:0}
-    header{padding:32px 20px;background:linear-gradient(180deg,#eefcf7,#ffffff)}
-    .wrap{max-width:900px;margin:0 auto;padding:0 20px}
-    h1{margin:0 0 4px 0;font-size:28px}
-    h2{margin:24px 0 8px 0;font-size:20px;border-bottom:1px solid #eaeaea;padding-bottom:4px}
-    ul{padding-left:18px;margin:8px 0}
-    .meta{color:var(--muted)}
-    .tag{display:inline-block;border:1px solid #e0e0e0;border-radius:20px;padding:2px 10px;margin:4px 6px 0 0;font-size:13px;background:var(--card)}
-    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
-    .section{margin:18px 0 28px}
-    .item{margin:10px 0 14px}
-    footer{border-top:1px solid #eee;color:var(--muted);padding:20px 0;margin-top:30px}
-    code{background:#f3f3f4;padding:2px 6px;border-radius:6px}
+    :root{
+      --bg:#0b0d10;         /* deep charcoal */
+      --panel:#111418;      /* panel surface */
+      --muted:#9fb0c3;      /* muted text */
+      --text:#e6edf3;       /* primary text */
+      --accent:#4cc9f0;     /* cyan accent */
+      --accent-2:#a78bfa;   /* soft violet */
+      --ring: rgba(76,201,240,.35);
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.45);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 10% -10%, rgba(76,201,240,.08), transparent 60%),
+                  radial-gradient(1000px 700px at 110% 10%, rgba(167,139,250,.08), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      line-height:1.6;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{opacity:.9; text-decoration:underline}
+    .wrap{
+      max-width:1100px; margin:0 auto; padding:32px 20px 56px;
+    }
+    header.hero{
+      display:grid; gap:14px; grid-template-columns: 1fr auto; align-items:end; margin:18px 0 26px;
+    }
+    .title{
+      font-size: clamp(28px, 3.3vw, 44px);
+      line-height:1.15; margin:0;
+      letter-spacing:.2px;
+    }
+    .subtitle{margin:2px 0 0; color:var(--muted)}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px; padding:8px 12px;
+      font:600 13px/1 var(--sans); color:#cfe9f7; background: linear-gradient(135deg, rgba(76,201,240,.20), rgba(167,139,250,.12));
+      border:1px solid rgba(76,201,240,.25); border-radius:999px; backdrop-filter: blur(6px);
+    }
+
+    .grid{
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:22px;
+    }
+    @media (max-width: 880px){ .grid{grid-template-columns:1fr} }
+
+    .card{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)) border-box,
+        radial-gradient(120% 180% at 0% 0%, rgba(76,201,240,.25), rgba(167,139,250,.2) 35%, rgba(255,255,255,0) 60%) border-box,
+        var(--panel);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:22px 20px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover{ transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,.55); }
+    .card h2{
+      margin:0 0 10px; font-size: clamp(17px, 1.7vw, 22px);
+    }
+    .section-note{color:var(--muted); font-size:13px; margin:-2px 0 12px}
+    .meta{display:flex; gap:10px; flex-wrap:wrap; color:var(--muted); font-size:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px; padding:6px 10px; margin:6px 6px 0 0;
+      background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:999px; color:#cfe9f7; font-size:13px;
+    }
+    .list{margin:0; padding:0; list-style:none}
+    .item{padding:12px 0; border-top:1px dashed rgba(255,255,255,.09)}
+    .item:first-child{border-top:0}
+    .item h3{margin:0; font-size:16px}
+    .item .when, .item .org{color:var(--muted); font-size:13px}
+    .stack{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+    .tag{font:600 12px/1 var(--sans); letter-spacing:.2px; color:#d7e9ff; border:1px solid rgba(76,201,240,.30); padding:6px 10px; border-radius:999px; background:rgba(76,201,240,.10)}
+    .tag.violet{border-color: rgba(167,139,250,.35); background: rgba(167,139,250,.12); color:#e9dcff}
+
+    footer{margin-top:26px; color:var(--muted); font-size:13px}
+    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px; padding:10px 14px;
+      border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.03);
+      color:#eaf6ff; border-radius:12px; text-decoration:none;
+      transition: background .2s ease, border-color .2s ease;
+    }
+    .btn:hover{background:rgba(255,255,255,.06); border-color: rgba(76,201,240,.35)}
+    .fine{font-family:var(--mono); font-size:12px; color:var(--muted)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <h1>M Jahidul Islam</h1>
-      <div class="meta">Email: <span title="shown in safe form">jahid1081 [at] gmail [dot] com</span></div>
-      <div class="meta">Public RDF/OWL: <a href="cv-ontology.owl">cv-ontology.owl</a> (same file contains ontology + instance data)</div>
-      <div class="meta">Note: phone and street address intentionally omitted.</div>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="section">
-      <h2>Profile</h2>
-      <p>Bangladeshi computer science enthusiast and banking technology professional with experience across business analysis,
-      access control, and teaching. Interested in AI applications in finance and education.</p>
-    </section>
-
-    <section class="section">
-      <h2>Experience</h2>
-
-      <div class="item">
-        <strong>United Commercial Bank PLC</strong>, Dhaka, Bangladesh — <em>Executive Officer; Access Control Analyst</em><br>
-        <span class="meta">Jan 2018 – Jan 2025</span>
-        <ul>
-          <li>Access governance for mission‑critical apps: Core Banking, EFTN, RTGS, AML Suite, Remittance.</li>
-          <li>Business analysis for in‑house systems including <em>UDispatch</em>, CRERM legal module, Credit Rating and Environmental Risk.</li>
-        </ul>
-        <div class="meta"><a href="https://www.ucb.com.bd/" target="_blank" rel="noopener">Website</a></div>
-      </div>
-
-      <div class="item">
-        <strong>Scholastica</strong>, Dhaka, Bangladesh — <em>Computer Science Teacher (IGCSE O/A Levels)</em><br>
-        <span class="meta">Aug 2012 – Jun 2017</span>
-        <ul>
-          <li>Taught theory &amp; practicals; prepared curricula, exams, and evaluations.</li>
-        </ul>
-        <div class="meta"><a href="https://www.scholastica.com.bd/" target="_blank" rel="noopener">Website</a></div>
-      </div>
-
-      <div class="item">
-        <strong>North South University</strong>, Dhaka, Bangladesh — <em>Undergraduate Teaching Assistant</em><br>
-        <span class="meta">Jan 2011 – Dec 2011</span>
-        <ul>
-          <li>Supported courses: Computing Concepts, Data Structures, Discrete Mathematics, Advanced Operating Systems.</li>
-        </ul>
-        <div class="meta"><a href="https://www.northsouth.edu/" target="_blank" rel="noopener">Website</a></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Education</h2>
-      <div class="item">
-        <strong>University of Jyväskylä</strong> — MSc in Artificial Intelligence <span class="meta">(Feb 2025 – present)</span><br>
-        <a class="meta" href="https://www.jyu.fi/" target="_blank" rel="noopener">jyu.fi</a>
-      </div>
-      <div class="item">
-        <strong>University of Dhaka</strong> — Master of Information Technology <span class="meta">(2013 – 2014)</span><br>
-        CGPA 3.65/4.00 (Cum Laude). Field: ICT. <a class="meta" href="https://www.du.ac.bd/" target="_blank" rel="noopener">du.ac.bd</a>
-      </div>
-      <div class="item">
-        <strong>North South University</strong> — BSc in Computer Science <span class="meta">(2007 – 2011)</span><br>
-        CGPA 3.50/4.00 (Cum Laude). Thesis: Real‑time Human Detection and Tracking Using a Very Low Resolution Camera.<br>
-        <a class="meta" href="https://www.northsouth.edu/" target="_blank" rel="noopener">northsouth.edu</a>
-      </div>
-      <div class="item">
-        <strong>Barishal Cadet College</strong> — Higher Secondary School Certificate <span class="meta">(2003 – 2005)</span><br>
-        GPA 5.00/5.00. <a class="meta" href="https://bcc.army.mil.bd/" target="_blank" rel="noopener">bcc.army.mil.bd</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Skills</h2>
+  <div class="wrap" about="cv:jahid" typeof="foaf:Person schema:Person">
+    <header class="hero">
       <div>
-        <span class="tag">C/C++</span>
-        <span class="tag">Python</span>
-        <span class="tag">Java</span>
-        <span class="tag">HTML</span>
-        <span class="tag">SQL</span>
-        <span class="tag">MATLAB</span>
-        <span class="tag">Microsoft Office</span>
-        <span class="tag">Google Drive</span>
-        <span class="tag">Zoom</span>
+        <h1 class="title" property="schema:name">M Jahidul Islam</h1>
+        <p class="subtitle">
+          <span class="badge" title="Current focus">MSc Artificial Intelligence @ JYU • Banking IT • Access Governance • In-house Systems Design</span>
+        </p>
       </div>
-    </section>
+      <div class="meta">
+        <span><strong>DOB:</strong> <time property="schema:birthDate" datetime="1987-12-06">6 Dec 1987</time></span>
+        <span><strong>Email:</strong> <span aria-label="obfuscated email">jahid1081 [at] gmail [dot] com</span></span>
+      </div>
+    </header>
 
-    <section class="section">
-      <h2>Languages</h2>
-      <ul>
-        <li>Bengali — Native</li>
-        <li>English — C1</li>
-        <li>Finnish — A1</li>
-      </ul>
-    </section>
+    <div class="grid">
+      <!-- Left column -->
+      <section class="card" id="about">
+        <h2>About</h2>
+        <p property="schema:description foaf:bio">
+          I am a highly skilled IT Officer with extensive experience in the banking sector, where I held the position of Executive Officer at United Commercial Bank PLC in Bangladesh. I resigned to pursue a Master's Degree in Artificial Intelligence at the University of Jyväskylä, a choice driven by my commitment to advancing my expertise in this vital field.
+        </p>
+        <p>
+          In my previous roles as Access Control Analyst and Business Analyst, I successfully managed critical applications, including the Core Banking System and Anti-Money Laundering Suite, while playing a pivotal role in developing UDispatch—an innovative in-house application for tracking organizational correspondence.
+        </p>
+        <p>
+          My passion for technology extends beyond banking. I taught Computer Science for Cambridge IGCSE O and A Levels at Scholastica, and served as an Undergraduate Teaching Assistant at North South University in Bangladesh. With proficiency in C++, Python, Java, MATLAB, and Microsoft Office, I am dedicated to harnessing technology to enhance business processes and educational frameworks, particularly cybersecurity and IT governance.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="cv-ontology.owl" rel="owl:imports">Download Ontology (.owl)</a>
+          <a class="btn" href="https://jahid1081.github.io/itks5440/cv-ontology.owl" target="_blank" rel="noopener">Open Ontology (Pages)</a>
+          <a class="btn" href="https://www.linkedin.com/in/jahid1081/" target="_blank" rel="noopener" property="schema:sameAs">LinkedIn</a>
+        </div>
+        <link property="schema:url" href="https://jahid1081.github.io/itks5440/cv.html" />
+      </section>
 
-    <section class="section">
-      <h2>Publications</h2>
-      <ul>
-        <li><strong>Ankur: Bangla Online Character Recognition</strong> (2014). DOI: <a href="https://doi.org/10.1049/cp.2014.1116" target="_blank" rel="noopener">10.1049/cp.2014.1116</a></li>
-        <li><strong>Low Resolution Camera for Human Detection and Tracking</strong> (2013). <em>IT in Industry</em>, 1(1), 2013.</li>
-        <li><strong>Real‑time Human Detection and Tracking Using a Very Low Resolution Camera</strong> (2013). <em>ICITA 2013</em>.</li>
-      </ul>
-    </section>
+      <section class="card" id="languages">
+        <h2>Languages</h2>
+        <p class="section-note">Overall CEFR levels with a Native term for mother tongue.</p>
+        <div class="stack">
+          <span class="tag" about="cv:engC1" typeof="cv:LanguageProficiency">
+            <meta property="cv:languageName" content="English" />
+            <a class="fine" about="cv:C1" property="cv:cefrLevel" href="cv-ontology.owl#C1">English — C1</a>
+          </span>
+          <span class="tag" about="cv:finA1" typeof="cv:LanguageProficiency">
+            <meta property="cv:languageName" content="Finnish" />
+            <a class="fine" about="cv:A1" property="cv:cefrLevel" href="cv-ontology.owl#A1">Finnish — A1</a>
+          </span>
+          <span class="tag violet" about="cv:benNative" typeof="cv:LanguageProficiency">
+            <meta property="cv:languageName" content="Bengali" />
+            <a class="fine" about="cv:Native" property="cv:cefrLevel" href="cv-ontology.owl#Native">Bengali — Native</a>
+          </span>
+        </div>
+      </section>
 
-    <section class="section">
-      <h2>Links</h2>
-      <ul>
-        <li>GitHub Pages (target location): <code>https://&lt;your-username&gt;.github.io/cv.html</code></li>
-        <li>OWL file (same repository root): <code>https://&lt;your-username&gt;.github.io/cv-ontology.owl</code></li>
-      </ul>
-    </section>
+      <!-- Right column -->
+      <section class="card" id="experience">
+        <h2>Experience</h2>
+        <ul class="list">
+          <li class="item" about="cv:role-ucb-executive-officer" typeof="schema:EmployeeRole">
+            <h3><span property="schema:roleName">Executive Officer</span> · <span class="org" about="cv:UCB" property="schema:name">United Commercial Bank PLC</span></h3>
+            <div class="when">
+              <time property="schema:startDate" datetime="2024-01">Jan 2024</time> – <time property="schema:endDate" datetime="2025-01">Jan 2025</time>
+            </div>
+          </li>
+          <li class="item" about="cv:role-ucb-senior-officer" typeof="schema:EmployeeRole">
+            <h3><span property="schema:roleName">Senior Officer</span> · <span class="org" about="cv:UCB" property="schema:name">United Commercial Bank PLC</span></h3>
+            <div class="when">
+              <time property="schema:startDate" datetime="2022-01">Jan 2022</time> – <time property="schema:endDate" datetime="2023-12">Dec 2023</time>
+            </div>
+          </li>
+          <li class="item" about="cv:role-ucb-officer" typeof="schema:EmployeeRole">
+            <h3><span property="schema:roleName">Officer</span> · <span class="org" about="cv:UCB" property="schema:name">United Commercial Bank PLC</span></h3>
+            <div class="when">
+              <time property="schema:startDate" datetime="2018-01">Jan 2018</time> – <time property="schema:endDate" datetime="2021-12">Dec 2021</time>
+            </div>
+          </li>
+        </ul>
+        <div class="section-note">Functional designations (modeled as roles; see ontology): Access Control Analyst; Business Analyst.</div>
+      </section>
 
-    <footer class="wrap">
-      <p>© M Jahidul Islam. This page intentionally excludes sensitive personal data.</p>
+      <section class="card" id="systems">
+        <h2>Systems &amp; Services</h2>
+        <p class="section-note">Modeled as software/services, not “skills”.</p>
+        <div class="stack">
+          <a class="tag" about="cv:OracleFlexcube" typeof="schema:SoftwareApplication" property="schema:name">Oracle FLEXCUBE Universal Banking</a>
+          <a class="tag" about="cv:VelocityAML" typeof="schema:SoftwareApplication" property="schema:name">Velocity AML T&amp;B Monitoring</a>
+          <a class="tag violet" about="cv:BEFTN" typeof="schema:GovernmentService" property="schema:name" href="https://en.wikipedia.org/wiki/Bangladesh_Electronic_Funds_Transfer_Network">BEFTN</a>
+          <a class="tag violet" about="cv:BD_RTGS" typeof="schema:GovernmentService" property="schema:name" href="https://en.wikipedia.org/wiki/Real-time_gross_settlement">BD-RTGS</a>
+          <span class="tag" about="cv:RemittanceSolution" typeof="schema:SoftwareApplication" property="schema:name">Remittance Disbursement</span>
+          <span class="tag" about="cv:UDispatch" typeof="schema:SoftwareApplication" property="schema:name">UDispatch (in-house)</span>
+          <span class="tag" about="cv:CRMD_Legal_Module" typeof="schema:SoftwareApplication" property="schema:name">CRMD Legal Module</span>
+          <span class="tag" about="cv:Credit_Rating_Module" typeof="schema:SoftwareApplication" property="schema:name">Credit Rating Module</span>
+          <span class="tag" about="cv:Environmental_Risk_Module" typeof="schema:SoftwareApplication" property="schema:name">Environmental Risk Module</span>
+        </div>
+      </section>
+
+      <section class="card" id="education">
+        <h2>Education</h2>
+        <ul class="list">
+          <li class="item" about="cv:cred-msc" typeof="schema:EducationalOccupationalCredential">
+            <h3 property="schema:name">MSc in Artificial Intelligence</h3>
+            <div class="when">Institution: <a about="cv:JYU" property="schema:name" href="https://www.jyu.fi/">University of Jyväskylä</a></div>
+          </li>
+          <li class="item" about="cv:cred-mit" typeof="schema:EducationalOccupationalCredential">
+            <h3 property="schema:name">Master of Information Technology</h3>
+            <div class="when">Institution: <a about="cv:DU" property="schema:name" href="https://www.du.ac.bd/">University of Dhaka</a></div>
+            <div class="meta">CGPA 3.65/4.00 (Cum Laude)</div>
+          </li>
+          <li class="item" about="cv:cred-bsc" typeof="schema:EducationalOccupationalCredential">
+            <h3 property="schema:name">BSc in Computer Science</h3>
+            <div class="when">Institution: <a about="cv:NSU" property="schema:name" href="https://www.northsouth.edu/">North South University</a></div>
+            <div class="meta">CGPA 3.50/4.00 (Cum Laude)</div>
+          </li>
+          <li class="item" about="cv:cred-hsc" typeof="schema:EducationalOccupationalCredential">
+            <h3 property="schema:name">Higher Secondary School Certificate</h3>
+            <div class="when">Institution: <a about="cv:BCC" property="schema:name" href="https://bcc.army.mil.bd/">Barishal Cadet College</a></div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="card" id="publications">
+        <h2>Publications</h2>
+        <ul class="list">
+          <li class="item" about="cv:paper-ankur-2014" typeof="schema:ScholarlyArticle">
+            <h3><span property="schema:name">ANKUR: Bangla Online Character Recognition</span> (2014)</h3>
+            <div class="meta">
+              <a property="schema:url" href="https://doi.org/10.1049/cp.2014.1116" target="_blank" rel="noopener">DOI: 10.1049/cp.2014.1116</a>
+            </div>
+          </li>
+          <li class="item" about="cv:paper-lrc-2013" typeof="schema:ScholarlyArticle">
+            <h3><span property="schema:name">Low Resolution Camera for Human Detection and Tracking</span> (2013)</h3>
+          </li>
+          <li class="item" about="cv:paper-rt-2013" typeof="schema:ScholarlyArticle">
+            <h3><span property="schema:name">Real-time Human Detection and Tracking Using a Very Low Resolution Camera</span> (2013)</h3>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <footer>
+      <div class="fine">
+        RDFa prefixes are declared on <code>&lt;html&gt;</code>. This page links/declares <code>owl:imports</code> to <code>cv-ontology.owl</code> and uses IRIs from that file (e.g., <code>#jahid</code>, <code>#BEFTN</code>, <code>#BD_RTGS</code>, <code>#CRMD_Legal_Module</code>, CEFR <code>#A1</code>/<code>#C1</code>/<code>#Native</code>).
+      </div>
     </footer>
-  </main>
+
+    <!-- Hidden triples for validators -->
+    <link rel="schema:sameAs" href="https://www.linkedin.com/in/jahid1081/" />
+  </div>
 </body>
 </html>
