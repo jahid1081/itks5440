@@ -1,9 +1,9 @@
 # Semantic CV - ITKS5440
 
-This repository contains a **machine‑readable Curriculum Vitae** for **M Jahidul Islam**, built for the course **ITKS5440: Semantic Web and Linked Data**.  
-It includes an HTML5 page with **RDFa** annotations, an **OWL (RDF/XML)** ontology, and a **Turtle** version of the same ontology, plus supporting assets and publications.
+This repository contains a **machine‑readable Curriculum Vitae** for **M Jahidul Islam**, built for **ITKS5440: Semantic Web and Linked Data**.  
+It ships an HTML5 CV with **RDFa**, plus an ontology in **OWL (RDF/XML)** and **Turtle** - kept fully consistent.
 
-> The ontology base IRI is: `https://jahid1081.github.io/itks5440/cv-ontology.owl#`
+> Base IRI: `https://jahid1081.github.io/itks5440/cv-ontology.owl#`
 
 ---
 
@@ -13,7 +13,7 @@ It includes an HTML5 page with **RDFa** annotations, an **OWL (RDF/XML)** ontolo
 - **Ontology (RDF/XML, OWL):** https://jahid1081.github.io/itks5440/cv-ontology.owl  
 - **Ontology (Turtle):** https://jahid1081.github.io/itks5440/cv-ontology.ttl  
 
-Publications (PDFs) are under `/pubs/` and linked from the CV page.
+Publications (PDFs) live under `/pubs/` and are linked from the CV page.
 
 ---
 
@@ -36,99 +36,81 @@ itks5440/
 
 ---
 
-## 🧠 Vocabularies & Modeling
+## 🧠 Modeling Summary
 
-- **schema.org** - core person, roles, education, software/services, dates
-- **FOAF** - `foaf:depiction`, `foaf:img`, `foaf:homepage`, `foaf:page`
-- **PROV‑O** - activities linked to overlapping organizational roles
-- **CEFR** - modeled via `schema:DefinedTermSet` and a simple `LanguageProficiency` node per language (English C1; Finnish A1; Bengali native)
+- **schema.org** for Person, EmployeeRole, credentials, software/services, dates.  
+- **FOAF** for profile image/page (`foaf:depiction`, `foaf:img`, `foaf:homepage`, `foaf:page`).  
+- **PROV‑O** for activities linked to overlapping organizational roles.  
+- **CEFR** modeled as a `schema:DefinedTermSet` and per‑language nodes linked via custom properties.
 
-Key sections represented in the HTML and OWL/TTL:
+**Custom terms (namespace `cv:`)**  
+- `cv:LanguageProficiency` (class)  
+- `cv:hasLanguageProficiency` (Person → LanguageProficiency)  
+- `cv:languageName` (xsd:string)  
+- `cv:cefrLevel` (LanguageProficiency → `schema:DefinedTerm` in {{A1,A2,B1,B2,C1,C2}})
 
-- **Person** (`cv:#jahid`) with `schema:description` and `foaf:bio`
-- **Experience**: organizational roles (`schema:EmployeeRole`) with **month‑level** `startDate`/`endDate` (`xsd:gYearMonth`)
-- **Functional roles** (Access Control Analyst; Business Analyst), also as `schema:EmployeeRole`
-- **Banking Platforms, Rails & Tools**: `schema:SoftwareApplication` and `schema:GovernmentService` (e.g., FLEXCUBE, Velocity AML, BEFTN, BD‑RTGS; operator: Bangladesh Bank)
-- **Activities**: `prov:Activity` associated with overlapping roles
-- **Education**: `schema:EducationalOccupationalCredential` with `dateCreated` (`xsd:date`)
-- **Publications**: `schema:ScholarlyArticle` linked to local PDFs
-- **Linking**: `schema:sameAs` to **DBpedia** where confirmed; Wikipedia/official links where appropriate
+**New (logic-only) improvements**  
+- **Inverse properties**  
+  - `cv:hasLanguageProficiency  owl:inverseOf  cv:isLanguageProficiencyOf`  
+  - `cv:cefrLevel              owl:inverseOf  cv:isLevelFor`
 
-> **Privacy choices:** email is **obfuscated** (no `mailto:`); **phone/street** are not published on the HTML page; **date of birth** is shown by choice but could be hidden in HTML while kept in OWL.
+- **SWRL rules (inference)**  
+  1) _Role ⇒ worksFor_: If `Person schema:hasOccupation Role` and `Role schema:memberOf Org`, infer `Person schema:worksFor Org`.  
+  2) _Activity ⇒ worksFor_: If `Activity prov:wasAssociatedWith Role`, `Role schema:memberOf Org`, and `Person schema:hasOccupation Role`, infer `Person schema:worksFor Org`.
+
+- **SHACL shapes (validation)**  
+  - `cv:EmployeeRoleShape` - require `schema:startDate` & `schema:endDate` (`xsd:gYearMonth`)  
+  - `cv:ActivityShape` - same date requirements **and** at least one `prov:wasAssociatedWith`  
+  - `cv:LanguageProficiencyShape` - require `cv:languageName` (`xsd:string`) and `cv:cefrLevel ∈ {{A1,A2,B1,B2,C1,C2}}`
+
+- **Datatype polish**  
+  - `schema:datePublished` typed as **`xsd:gYear`** for scholarly articles (e.g., 2014; 2013; 2013).
 
 ---
 
 ## ▶️ Preview / Run
 
-### GitHub Pages
-This repo is already configured for GitHub Pages under the default branch. Open the live CV link above.
-
-### Local Preview
-Use any static server:
+**GitHub Pages**: open the live CV link above.  
+**Local**: any static server will do.
 ```bash
-# Python 3
 python -m http.server 8080
-# then open http://localhost:8080/cv.html
+# open http://localhost:8080/cv.html
 ```
 
 ---
 
 ## ✅ Validation & Consistency
 
-- **RDFa extraction:** verified (e.g., on rdfa.info).  
-- **Cross‑file checks:** the HTML subjects (`cv:#…`) exist in the OWL/TTL; `typeof ↔ rdf:type` agrees; all dates match; FOAF additions are present in all files; avatar `<img>` includes `property="image foaf:depiction foaf:img"`.
+- **RDFa extraction** verified (e.g., rdfa.info).  
+- **Cross‑file parity**: subjects in HTML exist in OWL/TTL; `typeof` ↔ `rdf:type` match; dates align.  
+- **Rules/Shapes present in both serializations**: SWRL & SHACL are embedded in **OWL** and **TTL**.  
+- **FOAF** links (image/page/homepage) appear consistently in **HTML**, **OWL**, and **TTL**.  
+- Publications have `schema:datePublished` as **`xsd:gYear`**.
 
-If you change any data, keep **HTML, OWL, and TTL** in sync (see next section).
-
----
-
-## ✍️ How to Update
-
-### Update the photo
-1. Replace images in `assets/` (keep same names or update URLs in all three files).
-2. In `cv.html`, the avatar is the `<img>` inside `<figure class="avatar">`. It carries the RDFa properties:
-   ```html
-   <img property="image foaf:depiction foaf:img" src="assets/profile.webp" ... >
-   ```
-3. `cv-ontology.owl` and `cv-ontology.ttl` contain the image as `schema:image`, `foaf:depiction`, and `foaf:img` for `cv:#jahid`.
-
-### Add a publication
-1. Place the PDF in `/pubs/`.
-2. Add a `schema:ScholarlyArticle` item in **both**:  
-   - `cv.html` (RDFa block under *Publications*), and  
-   - `cv-ontology.owl` / `cv-ontology.ttl` (new subject with matching properties).
-3. Link the PDF with `schema:encoding` or `schema:url` (HTML side) and an appropriate property in OWL/TTL.
-
-### Add a DBpedia link
-- Only add `schema:sameAs` **after confirming** the exact DBpedia page exists.
-- Update both HTML (RDFa `property="sameAs"`) and ontology files.
-
-### Dates & Formats
-- **Roles/Activities:** use `YYYY‑MM` in `datetime`/literals; **visible** format in HTML is `From MM‑YYYY To MM‑YYYY`.
-- **Birthdate/Credential:** use `YYYY‑MM‑DD` in machine values; **visible** format can be `DD‑MM‑YYYY` in HTML.
+To lint with **pySHACL** locally (optional):
+```bash
+pip install pyshacl rdflib
+pyshacl -s cv-ontology.ttl -d cv-ontology.ttl -f human
+# or validate the RDF/XML:
+pyshacl -s cv-ontology.ttl -d cv-ontology.owl -f human
+```
 
 ---
 
 ## 🧾 Submission Checklist
 
-- [x] CV webpage live (`cv.html`)
-- [x] Ontology published (`cv-ontology.owl`, `cv-ontology.ttl`)
-- [x] RDFa extraction works
-- [x] DBpedia/official links added where confirmed
-- [x] Publications linked under `/pubs/`
-- [x] Photo present and semantically linked (schema + FOAF)
-- [x] **DOC report** prepared and emailed (includes Conclusion)
-
-
----
-
-## 📜 Notes
-
-- Keep the **base IRI** unchanged unless you intentionally migrate the ontology URL.
-- Do **not** publish private data unintentionally. The current page keeps email obfuscated and omits phone/street.
-- If you add more FOAF terms (e.g., `foaf:knows`), do so deliberately and consistently across all files.
+- [x] CV webpage live (`cv.html`)  
+- [x] Ontology published (`cv-ontology.owl`, `cv-ontology.ttl`)  
+- [x] RDFa extraction works  
+- [x] **Inverse properties** declared  
+- [x] **SWRL rules** present (inference)  
+- [x] **SHACL shapes** present (validation)  
+- [x] Publications `schema:datePublished` → **`xsd:gYear`**  
+- [x] DBpedia/official links where confirmed  
+- [x] Photo present & semantically linked (schema + FOAF)
 
 ---
 
 **Author:** M Jahidul Islam  
-**Course:** ITKS5440 - Semantic Web and Linked Data
+**Course:** ITKS5440 - Semantic Web and Linked Data  
+**Last updated:** 2025-11-12
