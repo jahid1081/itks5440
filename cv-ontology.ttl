@@ -1,10 +1,13 @@
-@prefix : <https://jahid1081.github.io/itks5440/cv-ontology.owl#> .
+@prefix cv: <https://jahid1081.github.io/itks5440/cv-ontology.owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://jahid1081.github.io/itks5440/cv-ontology.owl> a owl:Ontology ;
@@ -15,62 +18,94 @@
         <http://www.w3.org/ns/prov-o#>,
         foaf: .
 
-:A2 a schema:DefinedTerm ;
-    schema:inDefinedTermSet :CEFR ;
-    schema:name "A2" .
+cv:ActivityShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:gYearMonth ;
+            sh:minCount 1 ;
+            sh:path schema:endDate ],
+        [ sh:datatype xsd:gYearMonth ;
+            sh:minCount 1 ;
+            sh:path schema:startDate ],
+        [ sh:minCount 1 ;
+            sh:path prov:wasAssociatedWith ] ;
+    sh:targetClass prov:Activity .
 
-:B1 a schema:DefinedTerm ;
-    schema:inDefinedTermSet :CEFR ;
-    schema:name "B1" .
+cv:EmployeeRoleShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:gYearMonth ;
+            sh:minCount 1 ;
+            sh:path schema:endDate ],
+        [ sh:datatype xsd:gYearMonth ;
+            sh:minCount 1 ;
+            sh:path schema:startDate ] ;
+    sh:targetClass schema:EmployeeRole .
 
-:B2 a schema:DefinedTerm ;
-    schema:inDefinedTermSet :CEFR ;
-    schema:name "B2" .
+cv:LanguageProficiencyShape a sh:NodeShape ;
+    sh:property [ sh:in ( cv:A1 cv:A2 cv:B1 cv:B2 cv:C1 cv:C2 ) ;
+            sh:minCount 1 ;
+            sh:path cv:cefrLevel ],
+        [ sh:datatype xsd:string ;
+            sh:minCount 1 ;
+            sh:path cv:languageName ] ;
+    sh:targetClass cv:LanguageProficiency .
 
-:C2 a schema:DefinedTerm ;
-    schema:inDefinedTermSet :CEFR ;
-    schema:name "C2" .
+cv:RuleActivityImpliesWorksFor a swrl:Imp ;
+    rdfs:label "Activity association implies worksFor" ;
+    swrl:body ( [ a swrl:IndividualPropertyAtom ;
+                swrl:argument1 cv:varA ;
+                swrl:argument2 cv:varR ;
+                swrl:propertyPredicate prov:wasAssociatedWith ] [ a swrl:IndividualPropertyAtom ;
+                swrl:argument1 cv:varR ;
+                swrl:argument2 cv:varO ;
+                swrl:propertyPredicate schema:memberOf ] [ a swrl:IndividualPropertyAtom ;
+                swrl:argument1 cv:varP ;
+                swrl:argument2 cv:varR ;
+                swrl:propertyPredicate schema:hasOccupation ] ) ;
+    swrl:head ( [ a swrl:IndividualPropertyAtom ;
+                swrl:argument1 cv:varP ;
+                swrl:argument2 cv:varO ;
+                swrl:propertyPredicate schema:worksFor ] ) .
 
-:activity-access-governance a prov:Activity ;
+cv:RuleRoleImpliesWorksFor a swrl:Imp ;
+    rdfs:label "Role implies worksFor" ;
+    swrl:body ( [ a swrl:IndividualPropertyAtom ;
+                swrl:argument1 cv:varP ;
+                swrl:argument2 cv:varR ;
+                swrl:propertyPredicate schema:hasOccupation ] [ a swrl:IndividualPropertyAtom ;
+                swrl:argument1 cv:varR ;
+                swrl:argument2 cv:varO ;
+                swrl:propertyPredicate schema:memberOf ] ) ;
+    swrl:head ( [ a swrl:IndividualPropertyAtom ;
+                swrl:argument1 cv:varP ;
+                swrl:argument2 cv:varO ;
+                swrl:propertyPredicate schema:worksFor ] ) .
+
+cv:activity-access-governance a prov:Activity ;
     schema:endDate "2025-01"^^xsd:gYearMonth ;
     schema:name "Access governance and control" ;
     schema:startDate "2021-11"^^xsd:gYearMonth ;
-    prov:used :BD_RTGS,
-        :BEFTN,
-        :OracleFlexcube,
-        :RemittanceSolution,
-        :VelocityAML ;
-    prov:wasAssociatedWith :role-ucb-access-analyst,
-        :role-ucb-executive-officer,
-        :role-ucb-officer,
-        :role-ucb-senior-officer .
+    prov:used cv:BD_RTGS,
+        cv:BEFTN,
+        cv:OracleFlexcube,
+        cv:RemittanceSolution,
+        cv:VelocityAML ;
+    prov:wasAssociatedWith cv:role-ucb-access-analyst,
+        cv:role-ucb-executive-officer,
+        cv:role-ucb-officer,
+        cv:role-ucb-senior-officer .
 
-:activity-inhouse-design a prov:Activity ;
-    schema:about :CRMD_Legal_Module,
-        :Credit_Rating_Module,
-        :Environmental_Risk_Module,
-        :UDispatch ;
+cv:activity-inhouse-design a prov:Activity ;
+    schema:about cv:CRMD_Legal_Module,
+        cv:Credit_Rating_Module,
+        cv:Environmental_Risk_Module,
+        cv:UDispatch ;
     schema:endDate "2021-11"^^xsd:gYearMonth ;
     schema:name "In-house analysis and design" ;
     schema:startDate "2018-01"^^xsd:gYearMonth ;
-    prov:wasAssociatedWith :role-ucb-business-analyst,
-        :role-ucb-officer .
+    prov:wasAssociatedWith cv:role-ucb-business-analyst,
+        cv:role-ucb-officer .
 
-:cefrLevel a owl:ObjectProperty ;
-    rdfs:domain :LanguageProficiency ;
-    rdfs:range schema:DefinedTerm .
-
-:hasLanguageProficiency a owl:ObjectProperty ;
-    rdfs:domain schema:Person ;
-    rdfs:range :LanguageProficiency .
-
-:languageName a owl:DatatypeProperty ;
-    rdfs:domain :LanguageProficiency ;
-    rdfs:range xsd:string .
-
-:paper-ankur-2014 a schema:ScholarlyArticle ;
-    schema:author :jahid ;
-    schema:datePublished "2014" ;
+cv:paper-ankur-2014 a schema:ScholarlyArticle ;
+    schema:author cv:jahid ;
+    schema:datePublished "2014"^^xsd:gYear ;
     schema:encoding [ a schema:MediaObject ;
             schema:contentUrl <https://jahid1081.github.io/itks5440/pubs/mahmud2014.pdf> ;
             schema:encodingFormat "application/pdf" ] ;
@@ -80,242 +115,284 @@
     schema:name "ANKUR: Bangla Online Character Recognition" ;
     schema:url <https://doi.org/10.1049/cp.2014.1116> .
 
-:paper-lrc-2013 a schema:ScholarlyArticle ;
-    schema:author :jahid ;
-    schema:datePublished "2013" ;
+cv:paper-lrc-2013 a schema:ScholarlyArticle ;
+    schema:author cv:jahid ;
+    schema:datePublished "2013"^^xsd:gYear ;
     schema:encoding [ a schema:MediaObject ;
             schema:contentUrl <https://jahid1081.github.io/itks5440/pubs/Low_Resolution_Camera_for_Human_Detectio.pdf> ;
             schema:encodingFormat "application/pdf" ] ;
     schema:name "Low Resolution Camera for Human Detection and Tracking" .
 
-:paper-rt-2013 a schema:ScholarlyArticle ;
-    schema:author :jahid ;
-    schema:datePublished "2013" ;
+cv:paper-rt-2013 a schema:ScholarlyArticle ;
+    schema:author cv:jahid ;
+    schema:datePublished "2013"^^xsd:gYear ;
     schema:encoding [ a schema:MediaObject ;
             schema:contentUrl <https://jahid1081.github.io/itks5440/pubs/au-poon.pdf> ;
             schema:encodingFormat "application/pdf" ] ;
     schema:name "Real-time Human Detection and Tracking Using a Very Low Resolution Camera" .
 
-:A1 a schema:DefinedTerm ;
-    schema:inDefinedTermSet :CEFR ;
-    schema:name "A1" .
+cv:A2 a schema:DefinedTerm ;
+    schema:inDefinedTermSet cv:CEFR ;
+    schema:name "A2" .
 
-:BCC a schema:EducationalOrganization ;
+cv:B1 a schema:DefinedTerm ;
+    schema:inDefinedTermSet cv:CEFR ;
+    schema:name "B1" .
+
+cv:B2 a schema:DefinedTerm ;
+    schema:inDefinedTermSet cv:CEFR ;
+    schema:name "B2" .
+
+cv:BCC a schema:EducationalOrganization ;
     schema:address [ a schema:PostalAddress ;
-            schema:addressCountry :Bangladesh ;
+            schema:addressCountry cv:Bangladesh ;
             schema:addressLocality "Barishal" ] ;
-    schema:location :Barishal ;
+    schema:location cv:Barishal ;
     schema:name "Barishal Cadet College" ;
     schema:sameAs <https://dbpedia.org/page/Barishal_Cadet_College> ;
     schema:url <https://bcc.army.mil.bd/> .
 
-:BD_RTGS a schema:GovernmentService ;
+cv:BD_RTGS a schema:GovernmentService ;
     schema:description "Bangladesh’s real-time gross settlement system for high-value payments." ;
     schema:name "BD-RTGS (Bangladesh Real-Time Gross Settlement)" ;
-    schema:serviceOperator :BangladeshBank ;
+    schema:serviceOperator cv:BangladeshBank ;
     schema:url <https://en.wikipedia.org/wiki/Real-time_gross_settlement>,
         <https://www.lightspark.com/knowledge/bangladesh-real-time-payments> .
 
-:BEFTN a schema:GovernmentService ;
+cv:BEFTN a schema:GovernmentService ;
     schema:description "Bangladesh’s electronic funds transfer network for interbank transfers." ;
     schema:name "Bangladesh Electronic Funds Transfer Network (BEFTN)" ;
-    schema:serviceOperator :BangladeshBank ;
+    schema:serviceOperator cv:BangladeshBank ;
     schema:url <https://en.wikipedia.org/wiki/Bangladesh_Electronic_Funds_Transfer_Network> .
 
-:Barishal a schema:City ;
+cv:Barishal a schema:City ;
     schema:name "Barishal" ;
     schema:sameAs <https://dbpedia.org/page/Barisal> .
 
-:BengaliLang a schema:Language ;
+cv:BengaliLang a schema:Language ;
     schema:name "Bengali" ;
     schema:sameAs <https://dbpedia.org/page/Bengali_language> .
 
-:C1 a schema:DefinedTerm ;
-    schema:inDefinedTermSet :CEFR ;
-    schema:name "C1" .
+cv:C2 a schema:DefinedTerm ;
+    schema:inDefinedTermSet cv:CEFR ;
+    schema:name "C2" .
 
-:CRMD_Legal_Module a schema:SoftwareApplication ;
+cv:CRMD_Legal_Module a schema:SoftwareApplication ;
     schema:description "Module for legal division within CRMD." ;
     schema:name "CRMD Legal Module" .
 
-:Credit_Rating_Module a schema:SoftwareApplication ;
+cv:Credit_Rating_Module a schema:SoftwareApplication ;
     schema:name "Credit Rating Module" .
 
-:DU a schema:CollegeOrUniversity ;
+cv:DU a schema:CollegeOrUniversity ;
     schema:address [ a schema:PostalAddress ;
-            schema:addressCountry :Bangladesh ;
+            schema:addressCountry cv:Bangladesh ;
             schema:addressLocality "Dhaka" ] ;
-    schema:location :Dhaka ;
+    schema:location cv:Dhaka ;
     schema:name "University of Dhaka" ;
     schema:sameAs <https://dbpedia.org/page/University_of_Dhaka> ;
     schema:url <https://www.du.ac.bd/> .
 
-:EnglishLang a schema:Language ;
+cv:EnglishLang a schema:Language ;
     schema:name "English" ;
     schema:sameAs <https://dbpedia.org/page/English_language> .
 
-:Environmental_Risk_Module a schema:SoftwareApplication ;
+cv:Environmental_Risk_Module a schema:SoftwareApplication ;
     schema:name "Environmental Risk Module" .
 
-:Finland a schema:Country ;
+cv:Finland a schema:Country ;
     schema:name "Finland" ;
     schema:sameAs <https://dbpedia.org/page/Finland> .
 
-:FinnishLang a schema:Language ;
+cv:FinnishLang a schema:Language ;
     schema:name "Finnish" ;
     schema:sameAs <https://dbpedia.org/page/Finnish_language> .
 
-:JYU a schema:CollegeOrUniversity ;
+cv:JYU a schema:CollegeOrUniversity ;
     schema:address [ a schema:PostalAddress ;
-            schema:addressCountry :Finland ;
+            schema:addressCountry cv:Finland ;
             schema:addressLocality "Jyväskylä" ] ;
-    schema:location :Jyvaskyla ;
+    schema:location cv:Jyvaskyla ;
     schema:name "University of Jyväskylä" ;
     schema:sameAs <https://dbpedia.org/page/University_of_Jyväskylä> ;
     schema:url <https://www.jyu.fi/> .
 
-:Jyvaskyla a schema:City ;
+cv:Jyvaskyla a schema:City ;
     schema:name "Jyväskylä" ;
     schema:sameAs <https://dbpedia.org/page/Jyväskylä> .
 
-:Native a schema:DefinedTerm ;
-    schema:inDefinedTermSet :CEFR ;
+cv:Native a schema:DefinedTerm ;
+    schema:inDefinedTermSet cv:CEFR ;
     schema:name "Native (mother tongue)" .
 
-:OracleFlexcube a schema:SoftwareApplication ;
+cv:OracleFlexcube a schema:SoftwareApplication ;
     schema:description "Core banking platform by Oracle Financial Services." ;
     schema:name "Oracle FLEXCUBE Universal Banking" .
 
-:RemittanceSolution a schema:SoftwareApplication ;
+cv:RemittanceSolution a schema:SoftwareApplication ;
     schema:description "In-house/system used for remittance disbursement." ;
     schema:name "Remittance Disbursement Solution" .
 
-:Scholastica a schema:EducationalOrganization ;
+cv:Scholastica a schema:EducationalOrganization ;
     schema:address [ a schema:PostalAddress ;
-            schema:addressCountry :Bangladesh ;
+            schema:addressCountry cv:Bangladesh ;
             schema:addressLocality "Dhaka" ] ;
-    schema:location :Dhaka ;
+    schema:location cv:Dhaka ;
     schema:name "Scholastica" ;
     schema:url <https://cacdn03.freeli.io/scholastica/> .
 
-:UDispatch a schema:SoftwareApplication ;
+cv:UDispatch a schema:SoftwareApplication ;
     schema:description "In-house dispatch tracking system." ;
     schema:name "UDispatch" .
 
-:VelocityAML a schema:SoftwareApplication ;
+cv:VelocityAML a schema:SoftwareApplication ;
     schema:description "AML transaction monitoring and behavior analytics platform (vendor-level description)." ;
     schema:name "Velocity AML Transaction & Behavior Monitoring" .
 
-:benNative a :LanguageProficiency ;
-    :cefrLevel :Native ;
-    :languageName "Bengali" .
+cv:benNative a cv:LanguageProficiency ;
+    cv:cefrLevel cv:Native ;
+    cv:languageName "Bengali" .
 
-:cred-bsc a schema:EducationalOccupationalCredential ;
+cv:cred-bsc a schema:EducationalOccupationalCredential ;
     schema:dateCreated "2011-12-31"^^xsd:date ;
     schema:description "CGPA 3.50/4.00 (Cum Laude). Thesis: Real-time Human Detection and Tracking Using a Very Low Resolution Camera." ;
     schema:educationalLevel "Bachelor" ;
     schema:name "BSc in Computer Science" ;
-    schema:recognizedBy :NSU .
+    schema:recognizedBy cv:NSU .
 
-:cred-hsc a schema:EducationalOccupationalCredential ;
+cv:cred-hsc a schema:EducationalOccupationalCredential ;
     schema:dateCreated "2005-06-30"^^xsd:date ;
     schema:educationalLevel "Secondary" ;
     schema:name "Higher Secondary School Certificate" ;
-    schema:recognizedBy :BCC .
+    schema:recognizedBy cv:BCC .
 
-:cred-mit a schema:EducationalOccupationalCredential ;
+cv:cred-mit a schema:EducationalOccupationalCredential ;
     schema:dateCreated "2014-12-31"^^xsd:date ;
     schema:description "CGPA 3.65/4.00 (Cum Laude)." ;
     schema:educationalLevel "Master" ;
     schema:name "Master of Information Technology" ;
-    schema:recognizedBy :DU .
+    schema:recognizedBy cv:DU .
 
-:cred-msc a schema:EducationalOccupationalCredential ;
+cv:cred-msc a schema:EducationalOccupationalCredential ;
     schema:educationalLevel "Master" ;
     schema:name "MSc in Artificial Intelligence" ;
-    schema:recognizedBy :JYU .
+    schema:recognizedBy cv:JYU .
 
-:engC1 a :LanguageProficiency ;
-    :cefrLevel :C1 ;
-    :languageName "English" .
+cv:engC1 a cv:LanguageProficiency ;
+    cv:cefrLevel cv:C1 ;
+    cv:languageName "English" .
 
-:finA1 a :LanguageProficiency ;
-    :cefrLevel :A1 ;
-    :languageName "Finnish" .
+cv:finA1 a cv:LanguageProficiency ;
+    cv:cefrLevel cv:A1 ;
+    cv:languageName "Finnish" .
 
-:role-nsu-uta a schema:EmployeeRole ;
+cv:hasLanguageProficiency a owl:ObjectProperty ;
+    rdfs:domain schema:Person ;
+    rdfs:range cv:LanguageProficiency ;
+    owl:inverseOf cv:isLanguageProficiencyOf .
+
+cv:isLanguageProficiencyOf a owl:ObjectProperty ;
+    rdfs:domain cv:LanguageProficiency ;
+    rdfs:range schema:Person ;
+    owl:inverseOf cv:hasLanguageProficiency .
+
+cv:isLevelFor a owl:ObjectProperty ;
+    rdfs:domain schema:DefinedTerm ;
+    rdfs:range cv:LanguageProficiency ;
+    owl:inverseOf cv:cefrLevel .
+
+cv:languageName a owl:DatatypeProperty ;
+    rdfs:domain cv:LanguageProficiency ;
+    rdfs:range xsd:string .
+
+cv:role-nsu-uta a schema:EmployeeRole ;
     schema:endDate "2011-12"^^xsd:gYearMonth ;
-    schema:memberOf :NSU ;
+    schema:memberOf cv:NSU ;
     schema:roleName "Undergraduate Teaching Assistant" ;
     schema:startDate "2011-01"^^xsd:gYearMonth .
 
-:role-scholastica-teacher a schema:EmployeeRole ;
+cv:role-scholastica-teacher a schema:EmployeeRole ;
     schema:endDate "2017-06"^^xsd:gYearMonth ;
-    schema:memberOf :Scholastica ;
+    schema:memberOf cv:Scholastica ;
     schema:roleName "Teacher (Cambridge IGCSE O & A Levels, Computer Science)" ;
     schema:startDate "2012-08"^^xsd:gYearMonth .
 
-:BangladeshBank a schema:GovernmentOrganization ;
+cv:varA a swrl:Variable .
+
+cv:A1 a schema:DefinedTerm ;
+    schema:inDefinedTermSet cv:CEFR ;
+    schema:name "A1" .
+
+cv:BangladeshBank a schema:GovernmentOrganization ;
     schema:name "Bangladesh Bank" ;
     schema:url <https://en.wikipedia.org/wiki/Bangladesh_Bank>,
         <https://www.bb.org.bd/en/index.php> .
 
-:NSU a schema:CollegeOrUniversity ;
+cv:C1 a schema:DefinedTerm ;
+    schema:inDefinedTermSet cv:CEFR ;
+    schema:name "C1" .
+
+cv:NSU a schema:CollegeOrUniversity ;
     schema:address [ a schema:PostalAddress ;
-            schema:addressCountry :Bangladesh ;
+            schema:addressCountry cv:Bangladesh ;
             schema:addressLocality "Dhaka" ] ;
-    schema:location :Dhaka ;
+    schema:location cv:Dhaka ;
     schema:name "North South University" ;
     schema:sameAs <https://dbpedia.org/page/North_South_University> ;
     schema:url <https://www.northsouth.edu/> .
 
-:role-ucb-access-analyst a schema:EmployeeRole ;
+cv:cefrLevel a owl:ObjectProperty ;
+    rdfs:domain cv:LanguageProficiency ;
+    rdfs:range schema:DefinedTerm ;
+    owl:inverseOf cv:isLevelFor .
+
+cv:role-ucb-access-analyst a schema:EmployeeRole ;
     schema:endDate "2025-01"^^xsd:gYearMonth ;
-    schema:memberOf :UCB ;
+    schema:memberOf cv:UCB ;
     schema:roleName "Access Control Analyst" ;
     schema:startDate "2021-11"^^xsd:gYearMonth .
 
-:role-ucb-business-analyst a schema:EmployeeRole ;
+cv:role-ucb-business-analyst a schema:EmployeeRole ;
     schema:endDate "2021-11"^^xsd:gYearMonth ;
-    schema:memberOf :UCB ;
+    schema:memberOf cv:UCB ;
     schema:roleName "Business Analyst" ;
     schema:startDate "2018-01"^^xsd:gYearMonth .
 
-:role-ucb-executive-officer a schema:EmployeeRole ;
+cv:role-ucb-executive-officer a schema:EmployeeRole ;
     schema:endDate "2025-01"^^xsd:gYearMonth ;
-    schema:memberOf :UCB ;
+    schema:memberOf cv:UCB ;
     schema:roleName "Executive Officer" ;
     schema:startDate "2024-01"^^xsd:gYearMonth .
 
-:role-ucb-senior-officer a schema:EmployeeRole ;
+cv:role-ucb-senior-officer a schema:EmployeeRole ;
     schema:endDate "2023-12"^^xsd:gYearMonth ;
-    schema:memberOf :UCB ;
+    schema:memberOf cv:UCB ;
     schema:roleName "Senior Officer" ;
     schema:startDate "2022-01"^^xsd:gYearMonth .
 
-:jahid a schema:Person,
+cv:jahid a schema:Person,
         foaf:Person ;
     schema:birthDate "1987-12-06"^^xsd:date ;
-    schema:description """I am a highly skilled IT Officer with extensive experience in the banking sector, where I held the position of Executive Officer at United Commercial Bank PLC in Bangladesh. I resigned to pursue a Master's Degree in Artificial Intelligence at the University of Jyväskylä, a choice driven by my commitment to advancing my expertise in this vital field.\r
-\r
-In my previous roles as Access Control Analyst and Business Analyst, I successfully managed critical applications, including the Core Banking System and Anti-Money Laundering Suite, while playing a pivotal role in developing UDispatch—an innovative in-house application for tracking organizational correspondence. \r
-\r
+    schema:description """I am a highly skilled IT Officer with extensive experience in the banking sector, where I held the position of Executive Officer at United Commercial Bank PLC in Bangladesh. I resigned to pursue a Master's Degree in Artificial Intelligence at the University of Jyväskylä, a choice driven by my commitment to advancing my expertise in this vital field.\r\r
+\r\r
+In my previous roles as Access Control Analyst and Business Analyst, I successfully managed critical applications, including the Core Banking System and Anti-Money Laundering Suite, while playing a pivotal role in developing UDispatch—an innovative in-house application for tracking organizational correspondence. \r\r
+\r\r
 My passion for technology extends beyond banking. I taught Computer Science for Cambridge IGCSE O and A Levels at Scholastica, one of Bangladesh's most esteemed English-medium schools, and I served as an Undergraduate Teaching Assistant at North South University in Bangladesh. With proficiency in C++, Python, Java, MATLAB, and Microsoft Office, I am dedicated to harnessing technology to enhance business processes and educational frameworks, particularly cybersecurity and IT governance.""" ;
-    schema:hasCredential :cred-bsc,
-        :cred-hsc,
-        :cred-mit,
-        :cred-msc ;
-    schema:hasOccupation :role-nsu-uta,
-        :role-scholastica-teacher,
-        :role-ucb-access-analyst,
-        :role-ucb-business-analyst,
-        :role-ucb-executive-officer,
-        :role-ucb-officer,
-        :role-ucb-senior-officer ;
+    schema:hasCredential cv:cred-bsc,
+        cv:cred-hsc,
+        cv:cred-mit,
+        cv:cred-msc ;
+    schema:hasOccupation cv:role-nsu-uta,
+        cv:role-scholastica-teacher,
+        cv:role-ucb-access-analyst,
+        cv:role-ucb-business-analyst,
+        cv:role-ucb-executive-officer,
+        cv:role-ucb-officer,
+        cv:role-ucb-senior-officer ;
     schema:image <https://jahid1081.github.io/itks5440/assets/profile.webp> ;
-    schema:knowsLanguage :BengaliLang,
-        :EnglishLang,
-        :FinnishLang,
+    schema:knowsLanguage cv:BengaliLang,
+        cv:EnglishLang,
+        cv:FinnishLang,
         "Bengali",
         "English",
         "Finnish" ;
@@ -327,48 +404,54 @@ My passion for technology extends beyond banking. I taught Computer Science for 
         "Microsoft Office",
         "Python" ;
     schema:url <https://jahid1081.github.io/itks5440/cv.html> ;
-    schema:worksFor :UCB ;
-    foaf:bio """I am a highly skilled IT Officer with extensive experience in the banking sector, where I held the position of Executive Officer at United Commercial Bank PLC in Bangladesh. I resigned to pursue a Master's Degree in Artificial Intelligence at the University of Jyväskylä, a choice driven by my commitment to advancing my expertise in this vital field.\r
-\r
-In my previous roles as Access Control Analyst and Business Analyst, I successfully managed critical applications, including the Core Banking System and Anti-Money Laundering Suite, while playing a pivotal role in developing UDispatch—an innovative in-house application for tracking organizational correspondence. \r
-\r
+    schema:worksFor cv:UCB ;
+    foaf:bio """I am a highly skilled IT Officer with extensive experience in the banking sector, where I held the position of Executive Officer at United Commercial Bank PLC in Bangladesh. I resigned to pursue a Master's Degree in Artificial Intelligence at the University of Jyväskylä, a choice driven by my commitment to advancing my expertise in this vital field.\r\r
+\r\r
+In my previous roles as Access Control Analyst and Business Analyst, I successfully managed critical applications, including the Core Banking System and Anti-Money Laundering Suite, while playing a pivotal role in developing UDispatch—an innovative in-house application for tracking organizational correspondence. \r\r
+\r\r
 My passion for technology extends beyond banking. I taught Computer Science for Cambridge IGCSE O and A Levels at Scholastica, one of Bangladesh's most esteemed English-medium schools, and I served as an Undergraduate Teaching Assistant at North South University in Bangladesh. With proficiency in C++, Python, Java, MATLAB, and Microsoft Office, I am dedicated to harnessing technology to enhance business processes and educational frameworks, particularly cybersecurity and IT governance.""" ;
     foaf:depiction <https://jahid1081.github.io/itks5440/assets/profile.webp> ;
     foaf:homepage <https://jahid1081.github.io/itks5440/cv.html> ;
     foaf:img <https://jahid1081.github.io/itks5440/assets/profile.webp> ;
     foaf:mbox_sha1sum "4b339131670c3d53f1762e30caedcbfba5fa8f21" ;
     foaf:page <https://www.linkedin.com/in/jahid1081/> ;
-    :hasLanguageProficiency :benNative,
-        :engC1,
-        :finA1 .
+    cv:hasLanguageProficiency cv:benNative,
+        cv:engC1,
+        cv:finA1 .
 
-:role-ucb-officer a schema:EmployeeRole ;
+cv:role-ucb-officer a schema:EmployeeRole ;
     schema:endDate "2021-12"^^xsd:gYearMonth ;
-    schema:memberOf :UCB ;
+    schema:memberOf cv:UCB ;
     schema:roleName "Officer" ;
     schema:startDate "2018-01"^^xsd:gYearMonth .
 
-:Dhaka a schema:City ;
+cv:Dhaka a schema:City ;
     schema:name "Dhaka" ;
     schema:sameAs <https://dbpedia.org/page/Dhaka> .
 
-:Bangladesh a schema:Country ;
+cv:varO a swrl:Variable .
+
+cv:varP a swrl:Variable .
+
+cv:Bangladesh a schema:Country ;
     schema:name "Bangladesh" ;
     schema:sameAs <https://dbpedia.org/page/Bangladesh> .
 
-:LanguageProficiency a owl:Class ;
-    rdfs:label "Language Proficiency" .
+cv:varR a swrl:Variable .
 
-:UCB a schema:Organization ;
+cv:UCB a schema:Organization ;
     schema:address [ a schema:PostalAddress ;
-            schema:addressCountry :Bangladesh ;
+            schema:addressCountry cv:Bangladesh ;
             schema:addressLocality "Dhaka" ] ;
-    schema:location :Dhaka ;
+    schema:location cv:Dhaka ;
     schema:name "United Commercial Bank PLC" ;
     schema:sameAs <https://dbpedia.org/page/United_Commercial_Bank_(Bangladesh)> ;
     schema:url <https://www.ucb.com.bd/> .
 
-:CEFR a schema:DefinedTermSet ;
+cv:CEFR a schema:DefinedTermSet ;
     schema:description "CEFR proficiency levels for languages (plus a Native term for mother tongue)." ;
     schema:name "Common European Framework of Reference for Languages" .
+
+cv:LanguageProficiency a owl:Class ;
+    rdfs:label "Language Proficiency" .
 
