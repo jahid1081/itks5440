@@ -117,7 +117,7 @@ If you change any data, keep **HTML, OWL, and TTL** in sync (see next section).
 - [x] DBpedia/official links added where confirmed
 - [x] Publications linked under `/pubs/`
 - [x] Photo present and semantically linked (schema + FOAF)
-- [x] **DOCX report** prepared and emailed (includes Conclusion)
+- [x] **DOC report** prepared and emailed (includes Conclusion)
 
 
 ---
