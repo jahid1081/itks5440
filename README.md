@@ -1,4 +1,4 @@
-# Semantic CV — ITKS5440
+# Semantic CV - ITKS5440
 
 This repository contains a **machine‑readable Curriculum Vitae** for **M Jahidul Islam**, built for the course **ITKS5440: Semantic Web and Linked Data**.  
 It includes an HTML5 page with **RDFa** annotations, an **OWL (RDF/XML)** ontology, and a **Turtle** version of the same ontology, plus supporting assets and publications.
@@ -38,10 +38,10 @@ itks5440/
 
 ## 🧠 Vocabularies & Modeling
 
-- **schema.org** — core person, roles, education, software/services, dates
-- **FOAF** — `foaf:depiction`, `foaf:img`, `foaf:homepage`, `foaf:page`
-- **PROV‑O** — activities linked to overlapping organizational roles
-- **CEFR** — modeled via `schema:DefinedTermSet` and a simple `LanguageProficiency` node per language (English C1; Finnish A1; Bengali native)
+- **schema.org** - core person, roles, education, software/services, dates
+- **FOAF** - `foaf:depiction`, `foaf:img`, `foaf:homepage`, `foaf:page`
+- **PROV‑O** - activities linked to overlapping organizational roles
+- **CEFR** - modeled via `schema:DefinedTermSet` and a simple `LanguageProficiency` node per language (English C1; Finnish A1; Bengali native)
 
 Key sections represented in the HTML and OWL/TTL:
 
@@ -131,4 +131,4 @@ If you change any data, keep **HTML, OWL, and TTL** in sync (see next section).
 ---
 
 **Author:** M Jahidul Islam  
-**Course:** ITKS5440 — Semantic Web and Linked Data
+**Course:** ITKS5440 - Semantic Web and Linked Data
