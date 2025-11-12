@@ -1,14 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
-  xmlns:prov="http://www.w3.org/ns/prov#"
   xmlns:schema="http://schema.org/"
-  xmlns:owl="http://www.w3.org/2002/07/owl#"
-  xmlns:cv="https://jahid1081.github.io/itks5440/cv-ontology.owl#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:prov="http://www.w3.org/ns/prov#"
+  xmlns:swrl="http://www.w3.org/2003/11/swrl#"
   xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:sh="http://www.w3.org/ns/shacl#"
+  xmlns:cv="https://jahid1081.github.io/itks5440/cv-ontology.owl#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xmlns:dcterms="http://purl.org/dc/terms/"
-  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 >
+  <owl:Ontology rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl">
+    <rdfs:label>CV Ontology and Data for M Jahidul Islam</rdfs:label>
+    <dcterms:creator>M Jahidul Islam</dcterms:creator>
+    <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
+    <owl:imports rdf:resource="http://schema.org/"/>
+    <owl:imports rdf:resource="http://purl.org/dc/terms/"/>
+    <owl:imports rdf:resource="http://www.w3.org/ns/prov-o#"/>
+  </owl:Ontology>
+  <sh:NodeShape rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#ActivityShape">
+    <sh:targetClass rdf:resource="http://www.w3.org/ns/prov#Activity"/>
+    <sh:property>
+      <rdf:Description rdf:nodeID="Nedeadd0fd20f4a578c0832fd2def3f53">
+        <sh:path rdf:resource="http://schema.org/startDate"/>
+        <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#gYearMonth"/>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+      </rdf:Description>
+    </sh:property>
+    <sh:property>
+      <rdf:Description rdf:nodeID="Nf466132af6da4b22aa721de6fa3976a3">
+        <sh:path rdf:resource="http://schema.org/endDate"/>
+        <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#gYearMonth"/>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+      </rdf:Description>
+    </sh:property>
+    <sh:property>
+      <rdf:Description rdf:nodeID="N5b0b4e0c0d604a8b993a0fc637f4a74b">
+        <sh:path rdf:resource="http://www.w3.org/ns/prov#wasAssociatedWith"/>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+      </rdf:Description>
+    </sh:property>
+  </sh:NodeShape>
+  <swrl:Imp rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#RuleRoleImpliesWorksFor">
+    <rdfs:label>Role implies worksFor</rdfs:label>
+    <swrl:body rdf:parseType="Collection">
+      <swrl:IndividualPropertyAtom rdf:nodeID="N340ba3d823924b90918a6bb1d66d32c6">
+        <swrl:propertyPredicate rdf:resource="http://schema.org/hasOccupation"/>
+        <swrl:argument1>
+          <swrl:Variable rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#varP"/>
+        </swrl:argument1>
+        <swrl:argument2>
+          <swrl:Variable rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#varR"/>
+        </swrl:argument2>
+      </swrl:IndividualPropertyAtom>
+      <swrl:IndividualPropertyAtom rdf:nodeID="N50b07e75977b45858a5168da2d07129c">
+        <swrl:propertyPredicate rdf:resource="http://schema.org/memberOf"/>
+        <swrl:argument1 rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#varR"/>
+        <swrl:argument2>
+          <swrl:Variable rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#varO"/>
+        </swrl:argument2>
+      </swrl:IndividualPropertyAtom>
+    </swrl:body>
+    <swrl:head rdf:parseType="Collection">
+      <swrl:IndividualPropertyAtom rdf:nodeID="Naec66299662743e290ea53c22c9d2a0c">
+        <swrl:propertyPredicate rdf:resource="http://schema.org/worksFor"/>
+        <swrl:argument1 rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#varP"/>
+        <swrl:argument2 rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#varO"/>
+      </swrl:IndividualPropertyAtom>
+    </swrl:head>
+  </swrl:Imp>
+  <prov:Activity rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#activity-inhouse-design">
+    <schema:name>In-house analysis and design</schema:name>
+    <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2018-01</schema:startDate>
+    <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2021-11</schema:endDate>
+    <schema:about>
+      <schema:SoftwareApplication rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#UDispatch">
+        <schema:name>UDispatch</schema:name>
+        <schema:description>In-house dispatch tracking system.</schema:description>
+      </schema:SoftwareApplication>
+    </schema:about>
+    <schema:about>
+      <schema:SoftwareApplication rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#CRMD_Legal_Module">
+        <schema:name>CRMD Legal Module</schema:name>
+        <schema:description>Module for legal division within CRMD.</schema:description>
+      </schema:SoftwareApplication>
+    </schema:about>
+    <schema:about>
+      <schema:SoftwareApplication rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Credit_Rating_Module">
+        <schema:name>Credit Rating Module</schema:name>
+      </schema:SoftwareApplication>
+    </schema:about>
+    <schema:about>
+      <schema:SoftwareApplication rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Environmental_Risk_Module">
+        <schema:name>Environmental Risk Module</schema:name>
+      </schema:SoftwareApplication>
+    </schema:about>
+    <prov:wasAssociatedWith>
+      <schema:EmployeeRole rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#role-ucb-business-analyst">
+        <schema:roleName>Business Analyst</schema:roleName>
+        <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2018-01</schema:startDate>
+        <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2021-11</schema:endDate>
+        <schema:memberOf rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#UCB"/>
+      </schema:EmployeeRole>
+    </prov:wasAssociatedWith>
+    <prov:wasAssociatedWith>
+      <schema:EmployeeRole rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#role-ucb-officer">
+        <schema:roleName>Officer</schema:roleName>
+        <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2018-01</schema:startDate>
+        <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2021-12</schema:endDate>
+        <schema:memberOf rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#UCB"/>
+      </schema:EmployeeRole>
+    </prov:wasAssociatedWith>
+  </prov:Activity>
   <prov:Activity rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#activity-access-governance">
     <schema:name>Access governance and control</schema:name>
     <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2021-11</schema:startDate>
@@ -56,14 +160,7 @@
         <schema:memberOf rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#UCB"/>
       </schema:EmployeeRole>
     </prov:wasAssociatedWith>
-    <prov:wasAssociatedWith>
-      <schema:EmployeeRole rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#role-ucb-officer">
-        <schema:roleName>Officer</schema:roleName>
-        <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2018-01</schema:startDate>
-        <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2021-12</schema:endDate>
-        <schema:memberOf rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#UCB"/>
-      </schema:EmployeeRole>
-    </prov:wasAssociatedWith>
+    <prov:wasAssociatedWith rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#role-ucb-officer"/>
     <prov:wasAssociatedWith>
       <schema:EmployeeRole rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#role-ucb-senior-officer">
         <schema:roleName>Senior Officer</schema:roleName>
@@ -81,48 +178,25 @@
       </schema:EmployeeRole>
     </prov:wasAssociatedWith>
   </prov:Activity>
-  <prov:Activity rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#activity-inhouse-design">
-    <schema:name>In-house analysis and design</schema:name>
-    <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2018-01</schema:startDate>
-    <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2021-11</schema:endDate>
-    <schema:about>
-      <schema:SoftwareApplication rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#UDispatch">
-        <schema:name>UDispatch</schema:name>
-        <schema:description>In-house dispatch tracking system.</schema:description>
-      </schema:SoftwareApplication>
-    </schema:about>
-    <schema:about>
-      <schema:SoftwareApplication rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#CRMD_Legal_Module">
-        <schema:name>CRMD Legal Module</schema:name>
-        <schema:description>Module for legal division within CRMD.</schema:description>
-      </schema:SoftwareApplication>
-    </schema:about>
-    <schema:about>
-      <schema:SoftwareApplication rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Credit_Rating_Module">
-        <schema:name>Credit Rating Module</schema:name>
-      </schema:SoftwareApplication>
-    </schema:about>
-    <schema:about>
-      <schema:SoftwareApplication rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Environmental_Risk_Module">
-        <schema:name>Environmental Risk Module</schema:name>
-      </schema:SoftwareApplication>
-    </schema:about>
-    <prov:wasAssociatedWith>
-      <schema:EmployeeRole rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#role-ucb-business-analyst">
-        <schema:roleName>Business Analyst</schema:roleName>
-        <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2018-01</schema:startDate>
-        <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2021-11</schema:endDate>
-        <schema:memberOf rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#UCB"/>
-      </schema:EmployeeRole>
-    </prov:wasAssociatedWith>
-    <prov:wasAssociatedWith rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#role-ucb-officer"/>
-  </prov:Activity>
-  <owl:ObjectProperty rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#hasLanguageProficiency">
-    <rdfs:domain rdf:resource="http://schema.org/Person"/>
-    <rdfs:range rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#LanguageProficiency"/>
-  </owl:ObjectProperty>
-  <schema:ScholarlyArticle rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#paper-rt-2013">
-    <schema:name>Real-time Human Detection and Tracking Using a Very Low Resolution Camera</schema:name>
+  <sh:NodeShape rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#EmployeeRoleShape">
+    <sh:targetClass rdf:resource="http://schema.org/EmployeeRole"/>
+    <sh:property>
+      <rdf:Description rdf:nodeID="Nebce482b2a5f4c0e9e2b2ef982fdbd74">
+        <sh:path rdf:resource="http://schema.org/startDate"/>
+        <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#gYearMonth"/>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+      </rdf:Description>
+    </sh:property>
+    <sh:property>
+      <rdf:Description rdf:nodeID="N09ac544c4b6441f6b4c2e6699e9dd99d">
+        <sh:path rdf:resource="http://schema.org/endDate"/>
+        <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#gYearMonth"/>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+      </rdf:Description>
+    </sh:property>
+  </sh:NodeShape>
+  <schema:ScholarlyArticle rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#paper-ankur-2014">
+    <schema:name>ANKUR: Bangla Online Character Recognition</schema:name>
     <schema:author>
       <foaf:Person rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#jahid">
         <rdf:type rdf:resource="http://schema.org/Person"/>
@@ -174,34 +248,117 @@ My passion for technology extends beyond banking. I taught Computer Science for 
         <foaf:page rdf:resource="https://www.linkedin.com/in/jahid1081/"/>
       </foaf:Person>
     </schema:author>
-    <schema:datePublished>2013</schema:datePublished>
-    <schema:encoding>
-      <schema:MediaObject rdf:nodeID="N3fc73b791a184e309249e232faaa4bf8">
-        <schema:contentUrl rdf:resource="https://jahid1081.github.io/itks5440/pubs/au-poon.pdf"/>
-        <schema:encodingFormat>application/pdf</schema:encodingFormat>
-      </schema:MediaObject>
-    </schema:encoding>
-  </schema:ScholarlyArticle>
-  <schema:ScholarlyArticle rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#paper-ankur-2014">
-    <schema:name>ANKUR: Bangla Online Character Recognition</schema:name>
-    <schema:author rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#jahid"/>
-    <schema:datePublished>2014</schema:datePublished>
+    <schema:datePublished rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2014</schema:datePublished>
     <schema:identifier>
-      <schema:PropertyValue rdf:nodeID="N4998b09a6d9246969cf44531d89cceaf">
+      <schema:PropertyValue rdf:nodeID="N583d2474f4be49e8ad7a1639c93683dd">
         <schema:propertyID>DOI</schema:propertyID>
         <schema:value>10.1049/cp.2014.1116</schema:value>
       </schema:PropertyValue>
     </schema:identifier>
     <schema:url rdf:resource="https://doi.org/10.1049/cp.2014.1116"/>
     <schema:encoding>
-      <schema:MediaObject rdf:nodeID="N41d1e7feae414f2c90c54e4ba14b5489">
+      <schema:MediaObject rdf:nodeID="N63eecdeba69e4cbfa0de63b180771ab5">
         <schema:contentUrl rdf:resource="https://jahid1081.github.io/itks5440/pubs/mahmud2014.pdf"/>
         <schema:encodingFormat>application/pdf</schema:encodingFormat>
       </schema:MediaObject>
     </schema:encoding>
   </schema:ScholarlyArticle>
-  <schema:DefinedTerm rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#A2">
-    <schema:name>A2</schema:name>
+  <swrl:Imp rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#RuleActivityImpliesWorksFor">
+    <rdfs:label>Activity association implies worksFor</rdfs:label>
+    <swrl:body rdf:parseType="Collection">
+      <swrl:IndividualPropertyAtom rdf:nodeID="N263175b4d6454ce99b0665703514ffc3">
+        <swrl:propertyPredicate rdf:resource="http://www.w3.org/ns/prov#wasAssociatedWith"/>
+        <swrl:argument1>
+          <swrl:Variable rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#varA"/>
+        </swrl:argument1>
+        <swrl:argument2 rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#varR"/>
+      </swrl:IndividualPropertyAtom>
+      <swrl:IndividualPropertyAtom rdf:nodeID="N01d10ef5168944dfb8da6cbc77d63ca5">
+        <swrl:propertyPredicate rdf:resource="http://schema.org/memberOf"/>
+        <swrl:argument1 rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#varR"/>
+        <swrl:argument2 rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#varO"/>
+      </swrl:IndividualPropertyAtom>
+      <swrl:IndividualPropertyAtom rdf:nodeID="N65a6295a649542bb9e6981b790d1f3dc">
+        <swrl:propertyPredicate rdf:resource="http://schema.org/hasOccupation"/>
+        <swrl:argument1 rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#varP"/>
+        <swrl:argument2 rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#varR"/>
+      </swrl:IndividualPropertyAtom>
+    </swrl:body>
+    <swrl:head rdf:parseType="Collection">
+      <swrl:IndividualPropertyAtom rdf:nodeID="N1d954be0279047b4b89ded29ad21d4fb">
+        <swrl:propertyPredicate rdf:resource="http://schema.org/worksFor"/>
+        <swrl:argument1 rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#varP"/>
+        <swrl:argument2 rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#varO"/>
+      </swrl:IndividualPropertyAtom>
+    </swrl:head>
+  </swrl:Imp>
+  <sh:NodeShape rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#LanguageProficiencyShape">
+    <sh:targetClass rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#LanguageProficiency"/>
+    <sh:property>
+      <rdf:Description rdf:nodeID="N75bcdb2f3f6f42049f9dd935e77d6b1b">
+        <sh:path rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#languageName"/>
+        <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+      </rdf:Description>
+    </sh:property>
+    <sh:property>
+      <rdf:Description rdf:nodeID="Ne07fc4e0059d4280979c690f89e25aa1">
+        <sh:path rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#cefrLevel"/>
+        <sh:in rdf:parseType="Collection">
+          <rdf:Description rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#A1"/>
+          <rdf:Description rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#A2"/>
+          <rdf:Description rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#B1"/>
+          <rdf:Description rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#B2"/>
+          <rdf:Description rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#C1"/>
+          <rdf:Description rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#C2"/>
+        </sh:in>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+      </rdf:Description>
+    </sh:property>
+  </sh:NodeShape>
+  <schema:ScholarlyArticle rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#paper-rt-2013">
+    <schema:name>Real-time Human Detection and Tracking Using a Very Low Resolution Camera</schema:name>
+    <schema:author rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#jahid"/>
+    <schema:datePublished rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2013</schema:datePublished>
+    <schema:encoding>
+      <schema:MediaObject rdf:nodeID="Ndd7e70d3cb594d1fa856499a9c60eed1">
+        <schema:contentUrl rdf:resource="https://jahid1081.github.io/itks5440/pubs/au-poon.pdf"/>
+        <schema:encodingFormat>application/pdf</schema:encodingFormat>
+      </schema:MediaObject>
+    </schema:encoding>
+  </schema:ScholarlyArticle>
+  <schema:ScholarlyArticle rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#paper-lrc-2013">
+    <schema:name>Low Resolution Camera for Human Detection and Tracking</schema:name>
+    <schema:author rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#jahid"/>
+    <schema:datePublished rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2013</schema:datePublished>
+    <schema:encoding>
+      <schema:MediaObject rdf:nodeID="N238ad85e426841eea3a20f5bf796958b">
+        <schema:contentUrl rdf:resource="https://jahid1081.github.io/itks5440/pubs/Low_Resolution_Camera_for_Human_Detectio.pdf"/>
+        <schema:encodingFormat>application/pdf</schema:encodingFormat>
+      </schema:MediaObject>
+    </schema:encoding>
+  </schema:ScholarlyArticle>
+  <schema:EmployeeRole rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#role-nsu-uta">
+    <schema:roleName>Undergraduate Teaching Assistant</schema:roleName>
+    <schema:memberOf>
+      <schema:CollegeOrUniversity rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#NSU">
+        <schema:name>North South University</schema:name>
+        <schema:sameAs rdf:resource="https://dbpedia.org/page/North_South_University"/>
+        <schema:url rdf:resource="https://www.northsouth.edu/"/>
+        <schema:location rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Dhaka"/>
+        <schema:address>
+          <schema:PostalAddress rdf:nodeID="N0ff61a0622eb4d13bb3c758b1c2688ff">
+            <schema:addressLocality>Dhaka</schema:addressLocality>
+            <schema:addressCountry rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Bangladesh"/>
+          </schema:PostalAddress>
+        </schema:address>
+      </schema:CollegeOrUniversity>
+    </schema:memberOf>
+    <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2011-01</schema:startDate>
+    <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2011-12</schema:endDate>
+  </schema:EmployeeRole>
+  <schema:DefinedTerm rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#C1">
+    <schema:name>C1</schema:name>
     <schema:inDefinedTermSet>
       <schema:DefinedTermSet rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#CEFR">
         <schema:name>Common European Framework of Reference for Languages</schema:name>
@@ -209,45 +366,6 @@ My passion for technology extends beyond banking. I taught Computer Science for 
       </schema:DefinedTermSet>
     </schema:inDefinedTermSet>
   </schema:DefinedTerm>
-  <owl:ObjectProperty rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#cefrLevel">
-    <rdfs:domain rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#LanguageProficiency"/>
-    <rdfs:range rdf:resource="http://schema.org/DefinedTerm"/>
-  </owl:ObjectProperty>
-  <schema:DefinedTerm rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#B1">
-    <schema:name>B1</schema:name>
-    <schema:inDefinedTermSet rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#CEFR"/>
-  </schema:DefinedTerm>
-  <schema:DefinedTerm rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#C2">
-    <schema:name>C2</schema:name>
-    <schema:inDefinedTermSet rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#CEFR"/>
-  </schema:DefinedTerm>
-  <schema:DefinedTerm rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#B2">
-    <schema:name>B2</schema:name>
-    <schema:inDefinedTermSet rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#CEFR"/>
-  </schema:DefinedTerm>
-  <schema:ScholarlyArticle rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#paper-lrc-2013">
-    <schema:name>Low Resolution Camera for Human Detection and Tracking</schema:name>
-    <schema:author rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#jahid"/>
-    <schema:datePublished>2013</schema:datePublished>
-    <schema:encoding>
-      <schema:MediaObject rdf:nodeID="N6de9c2da16b64ae499872167f4ce38fd">
-        <schema:contentUrl rdf:resource="https://jahid1081.github.io/itks5440/pubs/Low_Resolution_Camera_for_Human_Detectio.pdf"/>
-        <schema:encodingFormat>application/pdf</schema:encodingFormat>
-      </schema:MediaObject>
-    </schema:encoding>
-  </schema:ScholarlyArticle>
-  <owl:Ontology rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl">
-    <rdfs:label>CV Ontology and Data for M Jahidul Islam</rdfs:label>
-    <dcterms:creator>M Jahidul Islam</dcterms:creator>
-    <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
-    <owl:imports rdf:resource="http://schema.org/"/>
-    <owl:imports rdf:resource="http://purl.org/dc/terms/"/>
-    <owl:imports rdf:resource="http://www.w3.org/ns/prov-o#"/>
-  </owl:Ontology>
-  <owl:DatatypeProperty rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#languageName">
-    <rdfs:domain rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#LanguageProficiency"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </owl:DatatypeProperty>
   <schema:EducationalOccupationalCredential rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#cred-mit">
     <schema:name>Master of Information Technology</schema:name>
     <schema:educationalLevel>Master</schema:educationalLevel>
@@ -259,7 +377,7 @@ My passion for technology extends beyond banking. I taught Computer Science for 
         <schema:url rdf:resource="https://www.du.ac.bd/"/>
         <schema:location rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Dhaka"/>
         <schema:address>
-          <schema:PostalAddress rdf:nodeID="Nbfaa27c494d947ec97acd2a47dc17858">
+          <schema:PostalAddress rdf:nodeID="N519653f811f54fb9a4f3c5bcbc0223b7">
             <schema:addressLocality>Dhaka</schema:addressLocality>
             <schema:addressCountry rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Bangladesh"/>
           </schema:PostalAddress>
@@ -268,11 +386,119 @@ My passion for technology extends beyond banking. I taught Computer Science for 
     </schema:recognizedBy>
     <schema:description>CGPA 3.65/4.00 (Cum Laude).</schema:description>
   </schema:EducationalOccupationalCredential>
+  <owl:ObjectProperty rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#hasLanguageProficiency">
+    <rdfs:domain rdf:resource="http://schema.org/Person"/>
+    <rdfs:range rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#LanguageProficiency"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#isLanguageProficiencyOf">
+        <owl:inverseOf rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#hasLanguageProficiency"/>
+        <rdfs:domain rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#LanguageProficiency"/>
+        <rdfs:range rdf:resource="http://schema.org/Person"/>
+      </owl:ObjectProperty>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <schema:City rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Dhaka">
+    <schema:name>Dhaka</schema:name>
+    <schema:sameAs rdf:resource="https://dbpedia.org/page/Dhaka"/>
+  </schema:City>
+  <schema:EmployeeRole rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#role-scholastica-teacher">
+    <schema:roleName>Teacher (Cambridge IGCSE O &amp; A Levels, Computer Science)</schema:roleName>
+    <schema:memberOf>
+      <schema:EducationalOrganization rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Scholastica">
+        <schema:name>Scholastica</schema:name>
+        <schema:url rdf:resource="https://cacdn03.freeli.io/scholastica/"/>
+        <schema:location rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Dhaka"/>
+        <schema:address>
+          <schema:PostalAddress rdf:nodeID="Nb5f7dd662d244373b408e856b8b0d917">
+            <schema:addressLocality>Dhaka</schema:addressLocality>
+            <schema:addressCountry rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Bangladesh"/>
+          </schema:PostalAddress>
+        </schema:address>
+      </schema:EducationalOrganization>
+    </schema:memberOf>
+    <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2012-08</schema:startDate>
+    <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2017-06</schema:endDate>
+  </schema:EmployeeRole>
+  <schema:EducationalOccupationalCredential rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#cred-msc">
+    <schema:name>MSc in Artificial Intelligence</schema:name>
+    <schema:educationalLevel>Master</schema:educationalLevel>
+    <schema:recognizedBy>
+      <schema:CollegeOrUniversity rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#JYU">
+        <schema:name>University of Jyväskylä</schema:name>
+        <schema:sameAs rdf:resource="https://dbpedia.org/page/University_of_Jyväskylä"/>
+        <schema:url rdf:resource="https://www.jyu.fi/"/>
+        <schema:location rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Jyvaskyla"/>
+        <schema:address>
+          <schema:PostalAddress rdf:nodeID="N43f62867a32c4c76b13dd99042f7a4fc">
+            <schema:addressLocality>Jyväskylä</schema:addressLocality>
+            <schema:addressCountry rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Finland"/>
+          </schema:PostalAddress>
+        </schema:address>
+      </schema:CollegeOrUniversity>
+    </schema:recognizedBy>
+  </schema:EducationalOccupationalCredential>
+  <schema:Language rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#BengaliLang">
+    <schema:name>Bengali</schema:name>
+    <schema:sameAs rdf:resource="https://dbpedia.org/page/Bengali_language"/>
+  </schema:Language>
+  <schema:City rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Jyvaskyla">
+    <schema:name>Jyväskylä</schema:name>
+    <schema:sameAs rdf:resource="https://dbpedia.org/page/Jyväskylä"/>
+  </schema:City>
+  <schema:Country rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Bangladesh">
+    <schema:name>Bangladesh</schema:name>
+    <schema:sameAs rdf:resource="https://dbpedia.org/page/Bangladesh"/>
+  </schema:Country>
+  <schema:DefinedTerm rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#B2">
+    <schema:name>B2</schema:name>
+    <schema:inDefinedTermSet rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#CEFR"/>
+  </schema:DefinedTerm>
   <schema:GovernmentOrganization rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#BangladeshBank">
     <schema:name>Bangladesh Bank</schema:name>
     <schema:url rdf:resource="https://www.bb.org.bd/en/index.php"/>
     <schema:url rdf:resource="https://en.wikipedia.org/wiki/Bangladesh_Bank"/>
   </schema:GovernmentOrganization>
+  <schema:EducationalOccupationalCredential rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#cred-bsc">
+    <schema:name>BSc in Computer Science</schema:name>
+    <schema:educationalLevel>Bachelor</schema:educationalLevel>
+    <schema:dateCreated rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2011-12-31</schema:dateCreated>
+    <schema:recognizedBy rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#NSU"/>
+    <schema:description>CGPA 3.50/4.00 (Cum Laude). Thesis: Real-time Human Detection and Tracking Using a Very Low Resolution Camera.</schema:description>
+  </schema:EducationalOccupationalCredential>
+  <owl:ObjectProperty rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#cefrLevel">
+    <rdfs:domain rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#LanguageProficiency"/>
+    <rdfs:range rdf:resource="http://schema.org/DefinedTerm"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#isLevelFor">
+        <owl:inverseOf rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#cefrLevel"/>
+        <rdfs:domain rdf:resource="http://schema.org/DefinedTerm"/>
+        <rdfs:range rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#LanguageProficiency"/>
+      </owl:ObjectProperty>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <cv:LanguageProficiency rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#engC1">
+    <cv:languageName>English</cv:languageName>
+    <cv:cefrLevel rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#C1"/>
+  </cv:LanguageProficiency>
+  <owl:Class rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#LanguageProficiency">
+    <rdfs:label>Language Proficiency</rdfs:label>
+  </owl:Class>
+  <schema:Language rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#EnglishLang">
+    <schema:name>English</schema:name>
+    <schema:sameAs rdf:resource="https://dbpedia.org/page/English_language"/>
+  </schema:Language>
+  <owl:DatatypeProperty rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#languageName">
+    <rdfs:domain rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#LanguageProficiency"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <schema:City rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Barishal">
+    <schema:name>Barishal</schema:name>
+    <schema:sameAs rdf:resource="https://dbpedia.org/page/Barisal"/>
+  </schema:City>
+  <schema:DefinedTerm rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#A1">
+    <schema:name>A1</schema:name>
+    <schema:inDefinedTermSet rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#CEFR"/>
+  </schema:DefinedTerm>
   <schema:EducationalOccupationalCredential rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#cred-hsc">
     <schema:name>Higher Secondary School Certificate</schema:name>
     <schema:educationalLevel>Secondary</schema:educationalLevel>
@@ -284,7 +510,7 @@ My passion for technology extends beyond banking. I taught Computer Science for 
         <schema:url rdf:resource="https://bcc.army.mil.bd/"/>
         <schema:location rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Barishal"/>
         <schema:address>
-          <schema:PostalAddress rdf:nodeID="N136462a74c4a4ed0864415c1a253bf71">
+          <schema:PostalAddress rdf:nodeID="N9b94a72fc20c43649432bec298d33c0c">
             <schema:addressLocality>Barishal</schema:addressLocality>
             <schema:addressCountry rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Bangladesh"/>
           </schema:PostalAddress>
@@ -292,56 +518,24 @@ My passion for technology extends beyond banking. I taught Computer Science for 
       </schema:EducationalOrganization>
     </schema:recognizedBy>
   </schema:EducationalOccupationalCredential>
-  <schema:CollegeOrUniversity rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#JYU">
-    <schema:name>University of Jyväskylä</schema:name>
-    <schema:sameAs rdf:resource="https://dbpedia.org/page/University_of_Jyväskylä"/>
-    <schema:url rdf:resource="https://www.jyu.fi/"/>
-    <schema:location>
-      <schema:City rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Jyvaskyla">
-        <schema:name>Jyväskylä</schema:name>
-        <schema:sameAs rdf:resource="https://dbpedia.org/page/Jyväskylä"/>
-      </schema:City>
-    </schema:location>
+  <schema:Organization rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#UCB">
+    <schema:name>United Commercial Bank PLC</schema:name>
+    <schema:url rdf:resource="https://www.ucb.com.bd/"/>
+    <schema:sameAs rdf:resource="https://dbpedia.org/page/United_Commercial_Bank_(Bangladesh)"/>
+    <schema:location rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Dhaka"/>
     <schema:address>
-      <schema:PostalAddress rdf:nodeID="N3547a183b9c54a23b2f98dc44ae463ed">
-        <schema:addressLocality>Jyväskylä</schema:addressLocality>
-        <schema:addressCountry rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Finland"/>
+      <schema:PostalAddress rdf:nodeID="N1bc871dd211e44739f4bb87e22c9d82e">
+        <schema:addressLocality>Dhaka</schema:addressLocality>
+        <schema:addressCountry rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Bangladesh"/>
       </schema:PostalAddress>
     </schema:address>
-  </schema:CollegeOrUniversity>
-  <schema:Language rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#EnglishLang">
-    <schema:name>English</schema:name>
-    <schema:sameAs rdf:resource="https://dbpedia.org/page/English_language"/>
-  </schema:Language>
-  <schema:EmployeeRole rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#role-nsu-uta">
-    <schema:roleName>Undergraduate Teaching Assistant</schema:roleName>
-    <schema:memberOf>
-      <schema:CollegeOrUniversity rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#NSU">
-        <schema:name>North South University</schema:name>
-        <schema:sameAs rdf:resource="https://dbpedia.org/page/North_South_University"/>
-        <schema:url rdf:resource="https://www.northsouth.edu/"/>
-        <schema:location rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Dhaka"/>
-        <schema:address>
-          <schema:PostalAddress rdf:nodeID="Nce659ba394704f8a9d4ad1a2d8c65395">
-            <schema:addressLocality>Dhaka</schema:addressLocality>
-            <schema:addressCountry rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Bangladesh"/>
-          </schema:PostalAddress>
-        </schema:address>
-      </schema:CollegeOrUniversity>
-    </schema:memberOf>
-    <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2011-01</schema:startDate>
-    <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2011-12</schema:endDate>
-  </schema:EmployeeRole>
-  <schema:Language rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#FinnishLang">
-    <schema:name>Finnish</schema:name>
-    <schema:sameAs rdf:resource="https://dbpedia.org/page/Finnish_language"/>
-  </schema:Language>
-  <schema:Language rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#BengaliLang">
-    <schema:name>Bengali</schema:name>
-    <schema:sameAs rdf:resource="https://dbpedia.org/page/Bengali_language"/>
-  </schema:Language>
-  <schema:DefinedTerm rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#C1">
-    <schema:name>C1</schema:name>
+  </schema:Organization>
+  <cv:LanguageProficiency rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#finA1">
+    <cv:languageName>Finnish</cv:languageName>
+    <cv:cefrLevel rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#A1"/>
+  </cv:LanguageProficiency>
+  <schema:DefinedTerm rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#A2">
+    <schema:name>A2</schema:name>
     <schema:inDefinedTermSet rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#CEFR"/>
   </schema:DefinedTerm>
   <cv:LanguageProficiency rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#benNative">
@@ -353,78 +547,20 @@ My passion for technology extends beyond banking. I taught Computer Science for 
       </schema:DefinedTerm>
     </cv:cefrLevel>
   </cv:LanguageProficiency>
-  <schema:EmployeeRole rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#role-scholastica-teacher">
-    <schema:roleName>Teacher (Cambridge IGCSE O &amp; A Levels, Computer Science)</schema:roleName>
-    <schema:memberOf>
-      <schema:EducationalOrganization rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Scholastica">
-        <schema:name>Scholastica</schema:name>
-        <schema:url rdf:resource="https://cacdn03.freeli.io/scholastica/"/>
-        <schema:location rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Dhaka"/>
-        <schema:address>
-          <schema:PostalAddress rdf:nodeID="Na67243469f364cd29c355731d8f81e46">
-            <schema:addressLocality>Dhaka</schema:addressLocality>
-            <schema:addressCountry rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Bangladesh"/>
-          </schema:PostalAddress>
-        </schema:address>
-      </schema:EducationalOrganization>
-    </schema:memberOf>
-    <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2012-08</schema:startDate>
-    <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2017-06</schema:endDate>
-  </schema:EmployeeRole>
-  <schema:Organization rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#UCB">
-    <schema:name>United Commercial Bank PLC</schema:name>
-    <schema:url rdf:resource="https://www.ucb.com.bd/"/>
-    <schema:sameAs rdf:resource="https://dbpedia.org/page/United_Commercial_Bank_(Bangladesh)"/>
-    <schema:location>
-      <schema:City rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Dhaka">
-        <schema:name>Dhaka</schema:name>
-        <schema:sameAs rdf:resource="https://dbpedia.org/page/Dhaka"/>
-      </schema:City>
-    </schema:location>
-    <schema:address>
-      <schema:PostalAddress rdf:nodeID="N05f880ed0d6b4586987e19ca60b1edc1">
-        <schema:addressLocality>Dhaka</schema:addressLocality>
-        <schema:addressCountry rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#Bangladesh"/>
-      </schema:PostalAddress>
-    </schema:address>
-  </schema:Organization>
-  <schema:Country rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Bangladesh">
-    <schema:name>Bangladesh</schema:name>
-    <schema:sameAs rdf:resource="https://dbpedia.org/page/Bangladesh"/>
-  </schema:Country>
+  <schema:DefinedTerm rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#B1">
+    <schema:name>B1</schema:name>
+    <schema:inDefinedTermSet rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#CEFR"/>
+  </schema:DefinedTerm>
+  <schema:DefinedTerm rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#C2">
+    <schema:name>C2</schema:name>
+    <schema:inDefinedTermSet rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#CEFR"/>
+  </schema:DefinedTerm>
   <schema:Country rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Finland">
     <schema:name>Finland</schema:name>
     <schema:sameAs rdf:resource="https://dbpedia.org/page/Finland"/>
   </schema:Country>
-  <schema:DefinedTerm rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#A1">
-    <schema:name>A1</schema:name>
-    <schema:inDefinedTermSet rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#CEFR"/>
-  </schema:DefinedTerm>
-  <schema:EducationalOccupationalCredential rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#cred-msc">
-    <schema:name>MSc in Artificial Intelligence</schema:name>
-    <schema:educationalLevel>Master</schema:educationalLevel>
-    <schema:recognizedBy rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#JYU"/>
-  </schema:EducationalOccupationalCredential>
-  <owl:Class rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#LanguageProficiency">
-    <rdfs:label>Language Proficiency</rdfs:label>
-  </owl:Class>
-  <cv:LanguageProficiency rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#engC1">
-    <cv:languageName>English</cv:languageName>
-    <cv:cefrLevel rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#C1"/>
-  </cv:LanguageProficiency>
-  <schema:EducationalOccupationalCredential rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#cred-bsc">
-    <schema:name>BSc in Computer Science</schema:name>
-    <schema:educationalLevel>Bachelor</schema:educationalLevel>
-    <schema:dateCreated rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2011-12-31</schema:dateCreated>
-    <schema:recognizedBy rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#NSU"/>
-    <schema:description>CGPA 3.50/4.00 (Cum Laude). Thesis: Real-time Human Detection and Tracking Using a Very Low Resolution Camera.</schema:description>
-  </schema:EducationalOccupationalCredential>
-  <cv:LanguageProficiency rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#finA1">
-    <cv:languageName>Finnish</cv:languageName>
-    <cv:cefrLevel rdf:resource="https://jahid1081.github.io/itks5440/cv-ontology.owl#A1"/>
-  </cv:LanguageProficiency>
-  <schema:City rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#Barishal">
-    <schema:name>Barishal</schema:name>
-    <schema:sameAs rdf:resource="https://dbpedia.org/page/Barisal"/>
-  </schema:City>
+  <schema:Language rdf:about="https://jahid1081.github.io/itks5440/cv-ontology.owl#FinnishLang">
+    <schema:name>Finnish</schema:name>
+    <schema:sameAs rdf:resource="https://dbpedia.org/page/Finnish_language"/>
+  </schema:Language>
 </rdf:RDF>
