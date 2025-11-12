@@ -3,48 +3,54 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>M Jahidul Islam — CV</title>
+  <title>M Jahidul Islam- CV</title>
   <meta name="description" content="Curriculum Vitae of M Jahidul Islam" />
   <link rel="alternate" type="application/rdf+xml" href="https://jahid1081.github.io/itks5440/cv-ontology.owl" title="RDF/XML (OWL)" />
   <link rel="alternate" type="text/turtle" href="https://jahid1081.github.io/itks5440/cv-ontology.ttl" title="Turtle" />
   <style>
     :root {
-      --bg: #0b0f16;
-      --bg-muted: #0f1520;
-      --panel: #121826;
-      --panel-2: #0f1a2b;
-      --text: #e8edf7;
-      --muted: #a9b2c6;
-      --accent: #6fb1ff;
-      --accent-2: #8ae9c1;
-      --chip: #1b2333;
-      --border: #1d2840;
-      --ok: #37d39b;
-      --warn: #ffd166;
+      --bg: #0a0f17;
+      --bg-2: #0d1624;
+      --panel: #0f1b2b;
+      --panel-2: #0a1320;
+      --text: #eaf1ff;
+      --muted: #a8b4c9;
+      --accent: #7cc5ff; /* Cyan/Blue */
+      --accent-2: #3ea6ff;
+      --badge-bg: #0e243d;
+      --chip: #0f2138;
+      --border: #163052;
+      --ok: #40e0a3;
+      --shadow: rgba(0,0,0,.45);
     }
     html, body {
-      background: radial-gradient(1200px 800px at 20% -20%, #142036 0%, var(--bg) 55%),
-                  linear-gradient(180deg, #0a0e15 0%, #0b0f16 100%);
+      background:
+        radial-gradient(1200px 700px at 20% -20%, #0f2442 0%, transparent 55%),
+        radial-gradient(1000px 900px at 120% 0%, #0a1f3a 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol", sans-serif;
       line-height: 1.55;
       margin: 0;
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 20px 90px; }
     header { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; }
-    .title h1 { margin: 0 0 8px; font-size: 2.2rem; letter-spacing: 0.3px; }
-    .title .subtitle { color: var(--muted); font-size: 1rem; }
-    .actions a { margin-left: 12px; padding: 10px 12px; background: var(--chip); border: 1px solid var(--border); border-radius: 10px; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; margin-top: 28px; }
-    .card { background: linear-gradient(180deg, var(--panel), var(--panel-2)); border: 1px solid var(--border); border-radius: 16px; padding: 18px 18px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
-    .card h2 { margin: 0 0 12px; font-size: 1.2rem; letter-spacing: .2px; }
+    .title h1 { margin: 0 0 10px; font-size: 2.4rem; letter-spacing: .2px; }
+    .title .row { display:flex; flex-wrap:wrap; gap:12px; }
+    .chip { display:inline-flex; gap:10px; align-items:center; padding: 8px 12px; background: var(--chip);
+             border: 1px solid var(--border); border-radius: 999px; font-size: .96rem; color: var(--text); }
+    .chip .label { color: var(--muted); font-weight: 600; letter-spacing:.2px; }
+    .actions a { margin-left: 12px; padding: 10px 14px; background: var(--badge-bg); border: 1px solid var(--border); border-radius: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; margin-top: 28px; }
+    .card { position:relative; background: linear-gradient(180deg, var(--panel), var(--panel-2));
+             border: 1px solid var(--border); border-radius: 18px; padding: 20px 20px; box-shadow: 0 12px 34px var(--shadow); }
+    .card h2 { margin: 0 0 14px; font-size: 1.2rem; letter-spacing: .2px; }
     .card h3 { margin: 14px 0 6px; font-size: 1.05rem; }
-    .kvs { display: grid; grid-template-columns: 140px 1fr; gap: 8px 16px; }
-    .chip { display:inline-flex; gap:8px; align-items:center; padding: 6px 10px; background: var(--chip); border: 1px solid var(--border); border-radius: 999px; font-size: .92rem; }
-    .badges > .chip { margin: 6px 6px 0 0; }
-    .muted { color: var(--muted); }
+    .kvs { display: grid; grid-template-columns: 150px 1fr; gap: 8px 16px; }
+    .badges { display:flex; flex-wrap:wrap; gap: 6px; margin-top:8px; }
+    .badge { display:inline-flex; align-items:center; gap:8px; padding:4px 8px; border-radius: 999px; background: var(--badge-bg); border: 1px solid var(--border); font-size:.85rem; color: var(--muted); }
     .list { margin: 0; padding-left: 18px; }
     .list li { margin: 4px 0; }
     .two-col { grid-column: span 8; }
@@ -52,13 +58,20 @@
     .wide { grid-column: 1 / -1; }
     .footer { color: var(--muted); margin-top: 28px; font-size: .95rem; }
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
-    .meta-links a { margin-right: 14px; }
+    .sep { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 8px 0 14px; }
+    .timeline::before { content:""; position:absolute; left: -10px; top: 24px; bottom: 24px;
+                         width: 2px; background: linear-gradient(var(--accent), transparent); border-radius:2px; opacity:.5; }
+    .muted { color: var(--muted); }
+    .icon { width:16px; height:16px; display:inline-block; }
+    .svg { vertical-align:-2px; }
     @media (max-width: 900px) {
       header { grid-template-columns: 1fr; }
       .two-col, .one-col { grid-column: 1 / -1; }
+      .timeline::before { display:none; }
     }
-    /* subtle separators */
-    .sep { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 8px 0 14px; }
+    /* micro-interactions */
+    .card:hover { border-color: var(--accent-2); box-shadow: 0 16px 40px rgba(0,0,0,.5); }
+    .actions a:hover { background: #0f2a47; }
   </style>
 </head>
 <body vocab="http://schema.org/">
@@ -66,16 +79,34 @@
     <header>
       <div class="title">
         <h1 property="name">M Jahidul Islam</h1>
-        <div class="subtitle">
-          <span class="chip" title="Birth date"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor"/></svg>&nbsp;<span class="mono" property="birthDate" content="1987-12-06">1987‑12‑06</span></span>
-          &nbsp;&nbsp;<span class="chip" title="Email (obfuscated)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 6l9 7 9-7" stroke="currentColor"/></svg>&nbsp;<span class="mono">jahid1081 [at] gmail [dot] com</span></span>
-          &nbsp;&nbsp;<span class="chip" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor"/></svg>&nbsp;<a rel="me" href="https://www.linkedin.com/in/jahid1081/" property="sameAs">linkedin.com/in/jahid1081</a></span>
+        <div class="row">
+          <!-- DOB label (no icon), show DD-MM-YYYY while keeping ISO content -->
+          <span class="chip" title="Birth date"><span class="label">DOB:</span>
+            <span class="mono" property="birthDate" content="1987-12-06">06-12-1987</span>
+          </span>
+
+          <!-- Email with clearer envelope icon, keep obfuscated -->
+          <span class="chip" title="Email (obfuscated)">
+            <svg class="svg" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor"/>
+              <path d="M3 7l9 6 9-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="mono">jahid1081 [at] gmail [dot] com</span>
+          </span>
+
+          <!-- LinkedIn with logo -->
+          <span class="chip" title="LinkedIn">
+            <svg class="svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="4"></rect>
+              <path d="M8 8h2.4v8H8zM9.2 6.2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zM12.8 8H15v1.1c.33-.54 1.02-1.3 2.4-1.3 2 0 3.6 1.32 3.6 4.17V16H18.6v-3.53c0-1.25-.56-2.07-1.73-2.07-1.01 0-1.67.67-1.93 1.32-.09.2-.12.49-.12.77V16h-2.4V8z" fill="#0a66c2"></path>
+            </svg>
+            <a rel="me" href="https://www.linkedin.com/in/jahid1081/" property="sameAs">linkedin.com/in/jahid1081</a>
+          </span>
         </div>
       </div>
-      <div class="actions meta-links">
-        <a href="https://jahid1081.github.io/itks5440/cv-ontology.owl" download>OWL</a>
-        <a href="https://jahid1081.github.io/itks5440/cv-ontology.ttl" download>TTL</a>
-        <a href="https://jahid1081.github.io/itks5440/cv.html">Live Page</a>
+      <div class="actions">
+        <a href="https://jahid1081.github.io/itks5440/cv-ontology.owl" target="_blank" rel="noopener">OWL</a>
+        <a href="https://jahid1081.github.io/itks5440/cv-ontology.ttl" target="_blank" rel="noopener">TTL</a>
       </div>
     </header>
 
@@ -85,7 +116,7 @@
         <h2 id="about">About</h2>
         <div property="description">
           <p>I am a highly skilled IT Officer with extensive experience in the banking sector, where I held the position of Executive Officer at United Commercial Bank PLC in Bangladesh. I resigned to pursue a Master's Degree in Artificial Intelligence at the University of Jyväskylä, a choice driven by my commitment to advancing my expertise in this vital field.</p>
-          <p>In my previous roles as Access Control Analyst and Business Analyst, I successfully managed critical applications, including the Core Banking System and Anti-Money Laundering Suite, while playing a pivotal role in developing UDispatch—an innovative in-house application for tracking organizational correspondence.</p>
+          <p>In my previous roles as Access Control Analyst and Business Analyst, I successfully managed critical applications, including the Core Banking System and Anti-Money Laundering Suite, while playing a pivotal role in developing UDispatch- an innovative in-house application for tracking organizational correspondence.</p>
           <p>My passion for technology extends beyond banking. I taught Computer Science for Cambridge IGCSE O and A Levels at Scholastica, one of Bangladesh's most esteemed English-medium schools, and I served as an Undergraduate Teaching Assistant at North South University in Bangladesh. With proficiency in C++, Python, Java, MATLAB, and Microsoft Office, I am dedicated to harnessing technology to enhance business processes and educational frameworks, particularly cybersecurity and IT governance.</p>
         </div>
       </section>
@@ -123,8 +154,8 @@
         </div>
       </section>
 
-      <!-- Experience -->
-      <section class="card two-col" aria-labelledby="exp">
+      <!-- Experience (timeline accent) -->
+      <section class="card two-col timeline" aria-labelledby="exp">
         <h2 id="exp">Experience</h2>
 
         <article typeof="Organization" resource="cv:#UCB">
@@ -136,28 +167,32 @@
             <div>
               <div typeof="EmployeeRole" resource="cv:#role-ucb-executive-officer">
                 <strong property="roleName">Executive Officer</strong>
-                <span class="muted">&nbsp;·&nbsp;<time property="startDate" datetime="2024-01">2024‑01</time>—<time property="endDate" datetime="2025-01">2025‑01</time></span>
+                <span class="muted">&nbsp;·&nbsp;From <time property="startDate" datetime="2024-01">01-2024</time> To <time property="endDate" datetime="2025-01">01-2025</time></span>
               </div>
               <div typeof="EmployeeRole" resource="cv:#role-ucb-senior-officer">
                 <strong property="roleName">Senior Officer</strong>
-                <span class="muted">&nbsp;·&nbsp;<time property="startDate" datetime="2022-01">2022‑01</time>—<time property="endDate" datetime="2023-12">2023‑12</time></span>
+                <span class="muted">&nbsp;·&nbsp;From <time property="startDate" datetime="2022-01">01-2022</time> To <time property="endDate" datetime="2023-12">12-2023</time></span>
               </div>
               <div typeof="EmployeeRole" resource="cv:#role-ucb-officer">
                 <strong property="roleName">Officer</strong>
-                <span class="muted">&nbsp;·&nbsp;<time property="startDate" datetime="2018-01">2018‑01</time>—<time property="endDate" datetime="2021-12">2021‑12</time></span>
+                <span class="muted">&nbsp;·&nbsp;From <time property="startDate" datetime="2018-01">01-2018</time> To <time property="endDate" datetime="2021-12">12-2021</time></span>
               </div>
             </div>
             <div class="muted">Functional</div>
             <div>
               <div typeof="EmployeeRole" resource="cv:#role-ucb-access-analyst">
                 <strong property="roleName">Access Control Analyst</strong>
-                <span class="muted">&nbsp;·&nbsp;<time property="startDate" datetime="2021-11">2021‑11</time>—<time property="endDate" datetime="2025-01">2025‑01</time></span>
+                <span class="muted">&nbsp;·&nbsp;From <time property="startDate" datetime="2021-11">11-2021</time> To <time property="endDate" datetime="2025-01">01-2025</time></span>
               </div>
               <div typeof="EmployeeRole" resource="cv:#role-ucb-business-analyst">
                 <strong property="roleName">Business Analyst</strong>
-                <span class="muted">&nbsp;·&nbsp;<time property="startDate" datetime="2018-01">2018‑01</time>—<time property="endDate" datetime="2021-11">2021‑11</time></span>
+                <span class="muted">&nbsp;·&nbsp;From <time property="startDate" datetime="2018-01">01-2018</time> To <time property="endDate" datetime="2021-11">11-2021</time></span>
               </div>
             </div>
+          </div>
+          <div class="badges">
+            <span class="badge">Official: <a href="https://www.ucb.com.bd/">ucb.com.bd</a></span>
+            <span class="badge">DBpedia: <a href="https://dbpedia.org/page/United_Commercial_Bank_(Bangladesh)">UCB</a></span>
           </div>
         </article>
 
@@ -168,9 +203,12 @@
           <div class="kvs">
             <div class="muted">Role</div><div typeof="EmployeeRole" resource="cv:#role-scholastica-teacher">
               <strong property="roleName">Teacher (Cambridge IGCSE O &amp; A Levels, Computer Science)</strong>
-              <span class="muted">&nbsp;·&nbsp;<time property="startDate" datetime="2012-08">2012‑08</time>—<time property="endDate" datetime="2017-06">2017‑06</time></span>
+              <span class="muted">&nbsp;·&nbsp;From <time property="startDate" datetime="2012-08">08-2012</time> To <time property="endDate" datetime="2017-06">06-2017</time></span>
             </div>
             <div class="muted">Location</div><div>Dhaka, Bangladesh</div>
+          </div>
+          <div class="badges">
+            <span class="badge">Official: <a href="https://cacdn03.freeli.io/scholastica/">scholastica</a></span>
           </div>
         </article>
 
@@ -182,39 +220,68 @@
           <div class="kvs">
             <div class="muted">Role</div><div typeof="EmployeeRole" resource="cv:#role-nsu-uta">
               <strong property="roleName">Undergraduate Teaching Assistant</strong>
-              <span class="muted">&nbsp;·&nbsp;<time property="startDate" datetime="2011-01">2011‑01</time>—<time property="endDate" datetime="2011-12">2011‑12</time></span>
+              <span class="muted">&nbsp;·&nbsp;From <time property="startDate" datetime="2011-01">01-2011</time> To <time property="endDate" datetime="2011-12">12-2011</time></span>
             </div>
             <div class="muted">Location</div><div>Dhaka, Bangladesh</div>
+          </div>
+          <div class="badges">
+            <span class="badge">Official: <a href="https://www.northsouth.edu/">northsouth.edu</a></span>
+            <span class="badge">DBpedia: <a href="https://dbpedia.org/page/North_South_University">NSU</a></span>
           </div>
         </article>
       </section>
 
-      <!-- Activities & Systems -->
+      <!-- Banking Platforms, Rails & Tools -->
       <section class="card one-col" aria-labelledby="systems">
-        <h2 id="systems">Systems &amp; Services</h2>
+        <h2 id="systems">Banking Platforms, Rails &amp; Tools</h2>
         <ul class="list">
-          <li typeof="SoftwareApplication" resource="cv:#OracleFlexcube"><strong property="name">Oracle FLEXCUBE Universal Banking</strong> — <span property="description" class="muted">Core banking platform by Oracle Financial Services.</span></li>
-          <li typeof="SoftwareApplication" resource="cv:#VelocityAML"><strong property="name">Velocity AML Transaction &amp; Behavior Monitoring</strong> — <span property="description" class="muted">AML transaction monitoring and behavior analytics platform (vendor-level description).</span></li>
-          <li typeof="GovernmentService" resource="cv:#BEFTN"><strong property="name">Bangladesh Electronic Funds Transfer Network (BEFTN)</strong> — <a href="https://en.wikipedia.org/wiki/Bangladesh_Electronic_Funds_Transfer_Network" property="url">Wikipedia</a> · Operator: <a href="https://www.bb.org.bd/en/index.php">Bangladesh Bank</a></li>
-          <li typeof="GovernmentService" resource="cv:#BD_RTGS"><strong property="name">BD‑RTGS (Bangladesh Real‑Time Gross Settlement)</strong> — <a href="https://en.wikipedia.org/wiki/Real-time_gross_settlement" property="url">Wikipedia</a> · <a href="https://www.lightspark.com/knowledge/bangladesh-real-time-payments" property="url">Lightspark explainer</a> · Operator: <a href="https://www.bb.org.bd/en/index.php">Bangladesh Bank</a></li>
-          <li typeof="GovernmentOrganization" resource="cv:#BangladeshBank"><strong property="name">Bangladesh Bank</strong> — <a href="https://www.bb.org.bd/en/index.php" property="url">Official</a> · <a href="https://en.wikipedia.org/wiki/Bangladesh_Bank" property="url">Wikipedia</a></li>
-          <li typeof="SoftwareApplication" resource="cv:#RemittanceSolution"><strong property="name">Remittance Disbursement Solution</strong> — <span property="description" class="muted">In-house/system used for remittance disbursement.</span></li>
-          <li typeof="SoftwareApplication" resource="cv:#UDispatch"><strong property="name">UDispatch</strong> — <span property="description" class="muted">In-house dispatch tracking system.</span></li>
-          <li typeof="SoftwareApplication" resource="cv:#CRMD_Legal_Module"><strong property="name">CRMD Legal Module</strong> — <span property="description" class="muted">Module for legal division within CRMD.</span></li>
+          <li typeof="SoftwareApplication" resource="cv:#OracleFlexcube">
+            <strong property="name">Oracle FLEXCUBE Universal Banking</strong>
+            : <span property="description" class="muted">Core banking platform by Oracle Financial Services.</span>
+          </li>
+          <li typeof="SoftwareApplication" resource="cv:#VelocityAML">
+            <strong property="name">Velocity AML Transaction &amp; Behavior Monitoring</strong>
+            : <span property="description" class="muted">AML transaction monitoring and behavior analytics platform (vendor-level description).</span>
+          </li>
+          <li typeof="GovernmentService" resource="cv:#BEFTN">
+            <strong property="name">Bangladesh Electronic Funds Transfer Network (BEFTN)</strong>
+            : <a href="https://en.wikipedia.org/wiki/Bangladesh_Electronic_Funds_Transfer_Network" property="url">Wikipedia</a> · Operator: <a href="https://www.bb.org.bd/en/index.php">Bangladesh Bank</a>
+            <div class="badges">
+              <span class="badge">Wikipedia: <a href="https://en.wikipedia.org/wiki/Bangladesh_Electronic_Funds_Transfer_Network">BEFTN</a></span>
+            </div>
+          </li>
+          <li typeof="GovernmentService" resource="cv:#BD_RTGS">
+            <strong property="name">BD‑RTGS (Bangladesh Real‑Time Gross Settlement)</strong>
+            : <a href="https://en.wikipedia.org/wiki/Real-time_gross_settlement" property="url">Wikipedia</a> · <a href="https://www.lightspark.com/knowledge/bangladesh-real-time-payments" property="url">Lightspark explainer</a> · Operator: <a href="https://www.bb.org.bd/en/index.php">Bangladesh Bank</a>
+            <div class="badges">
+              <span class="badge">Wikipedia: <a href="https://en.wikipedia.org/wiki/Real-time_gross_settlement">RTGS</a></span>
+              <span class="badge">Lightspark: <a href="https://www.lightspark.com/knowledge/bangladesh-real-time-payments">BD‑RTP explainer</a></span>
+            </div>
+          </li>
+          <li typeof="GovernmentOrganization" resource="cv:#BangladeshBank">
+            <strong property="name">Bangladesh Bank</strong>
+            - <a href="https://www.bb.org.bd/en/index.php" property="url">Official</a> · <a href="https://en.wikipedia.org/wiki/Bangladesh_Bank" property="url">Wikipedia</a>
+          </li>
+          <li typeof="SoftwareApplication" resource="cv:#RemittanceSolution"><strong property="name">Remittance Disbursement Solution</strong> : <span property="description" class="muted">In-house/system used for remittance disbursement.</span></li>
+          <li typeof="SoftwareApplication" resource="cv:#UDispatch"><strong property="name">UDispatch</strong> : <span property="description" class="muted">In-house dispatch tracking system.</span></li>
+          <li typeof="SoftwareApplication" resource="cv:#CRMD_Legal_Module"><strong property="name">CRMD Legal Module</strong> : <span property="description" class="muted">Module for legal division within CRMD (Credit Risk Management Division).</span></li>
           <li typeof="SoftwareApplication" resource="cv:#Credit_Rating_Module"><strong property="name">Credit Rating Module</strong></li>
           <li typeof="SoftwareApplication" resource="cv:#Environmental_Risk_Module"><strong property="name">Environmental Risk Module</strong></li>
         </ul>
-        <div class="sep"></div>
-        <h3>Representative Activities</h3>
+      </section>
+
+      <!-- Activities -->
+      <section class="card one-col" aria-labelledby="acts">
+        <h2 id="acts">Representative Activities</h2>
         <ul class="list">
           <li typeof="http://www.w3.org/ns/prov#Activity" resource="cv:#activity-access-governance">
             <strong property="schema:name">Access governance and control</strong>
-            <span class="muted"> — <time property="schema:startDate" datetime="2021-11">2021‑11</time> to <time property="schema:endDate" datetime="2025-01">2025‑01</time></span><br/>
+            <span class="muted"> : From <time property="schema:startDate" datetime="2021-11">11-2021</time> To <time property="schema:endDate" datetime="2025-01">01-2025</time></span><br/>
             Used: FLEXCUBE, BEFTN, BD‑RTGS, Velocity AML, Remittance Solution.
           </li>
           <li typeof="http://www.w3.org/ns/prov#Activity" resource="cv:#activity-inhouse-design">
             <strong property="schema:name">In‑house analysis and design</strong>
-            <span class="muted"> — <time property="schema:startDate" datetime="2018-01">2018‑01</time> to <time property="schema:endDate" datetime="2021-11">2021‑11</time></span><br/>
+            <span class="muted"> : From <time property="schema:startDate" datetime="2018-01">01-2018</time> To <time property="schema:endDate" datetime="2021-11">11-2021</time></span><br/>
             About: UDispatch, CRMD Legal Module, Credit Rating Module, Environmental Risk Module.
           </li>
         </ul>
@@ -225,18 +292,22 @@
         <h2 id="edu">Education</h2>
         <ul class="list">
           <li typeof="EducationalOccupationalCredential" resource="cv:#cred-msc">
-            <strong property="name">MSc in Artificial Intelligence</strong> — <span class="muted">Recognized by</span> <a href="https://www.jyu.fi/" typeof="CollegeOrUniversity" resource="cv:#JYU"><span property="name">University of Jyväskylä</span></a> (<a href="https://dbpedia.org/page/University_of_Jyväskylä" class="muted">DBpedia</a>)
+            <strong property="name">MS in Artificial Intelligence</strong>
+            : <span class="muted">Recognized by</span> <a href="https://www.jyu.fi/" typeof="CollegeOrUniversity" resource="cv:#JYU"><span property="name">University of Jyväskylä</span></a> (<a href="https://dbpedia.org/page/University_of_Jyväskylä" class="muted">DBpedia</a>)
           </li>
           <li typeof="EducationalOccupationalCredential" resource="cv:#cred-mit">
-            <strong property="name">Master of Information Technology</strong> — <span class="muted">2014‑12‑31</span>; <span class="muted">Recognized by</span> <a href="https://www.du.ac.bd/" typeof="CollegeOrUniversity" resource="cv:#DU"><span property="name">University of Dhaka</span></a> (<a href="https://dbpedia.org/page/University_of_Dhaka" class="muted">DBpedia</a>)<br/>
+            <strong property="name">Master of Information Technology</strong>
+            : <span class="muted">Date: <time property="dateCreated" datetime="2014-12-31">31-12-2014</time></span>; <span class="muted">Recognized by</span> <a href="https://www.du.ac.bd/" typeof="CollegeOrUniversity" resource="cv:#DU"><span property="name">University of Dhaka</span></a> (<a href="https://dbpedia.org/page/University_of_Dhaka" class="muted">DBpedia</a>)<br/>
             <span property="description" class="muted">CGPA 3.65/4.00 (Cum Laude).</span>
           </li>
           <li typeof="EducationalOccupationalCredential" resource="cv:#cred-bsc">
-            <strong property="name">BSc in Computer Science</strong> — <span class="muted">2011‑12‑31</span>; <span class="muted">Recognized by</span> <a href="https://www.northsouth.edu/" typeof="CollegeOrUniversity" resource="cv:#NSU"><span property="name">North South University</span></a> (<a href="https://dbpedia.org/page/North_South_University" class="muted">DBpedia</a>)<br/>
+            <strong property="name">BSc in Computer Science</strong>
+            : <span class="muted">Date: <time property="dateCreated" datetime="2011-12-31">31-12-2011</time></span>; <span class="muted">Recognized by</span> <a href="https://www.northsouth.edu/" typeof="CollegeOrUniversity" resource="cv:#NSU"><span property="name">North South University</span></a> (<a href="https://dbpedia.org/page/North_South_University" class="muted">DBpedia</a>)<br/>
             <span property="description" class="muted">CGPA 3.50/4.00 (Cum Laude). Thesis: Real-time Human Detection and Tracking Using a Very Low Resolution Camera.</span>
           </li>
           <li typeof="EducationalOccupationalCredential" resource="cv:#cred-hsc">
-            <strong property="name">Higher Secondary School Certificate</strong> — <span class="muted">2005‑06‑30</span>; <span class="muted">Recognized by</span> <a href="https://bcc.army.mil.bd/" typeof="EducationalOrganization" resource="cv:#BCC"><span property="name">Barishal Cadet College</span></a> (<a href="https://dbpedia.org/page/Barishal_Cadet_College" class="muted">DBpedia</a>)
+            <strong property="name">Higher Secondary School Certificate</strong>
+            : <span class="muted">Date: <time property="dateCreated" datetime="2005-06-30">30-06-2005</time></span>; <span class="muted">Recognized by</span> <a href="https://bcc.army.mil.bd/" typeof="EducationalOrganization" resource="cv:#BCC"><span property="name">Barishal Cadet College</span></a> (<a href="https://dbpedia.org/page/Barishal_Cadet_College" class="muted">DBpedia</a>)
           </li>
         </ul>
       </section>
@@ -246,7 +317,7 @@
         <h2 id="pubs">Publications</h2>
         <ul class="list">
           <li typeof="ScholarlyArticle" resource="cv:#paper-ankur-2014">
-            <strong property="name">ANKUR: Bangla Online Character Recognition</strong> (2014) — <a href="https://doi.org/10.1049/cp.2014.1116" property="url">DOI</a><br/>
+            <strong property="name">ANKUR: Bangla Online Character Recognition</strong> (2014) : <a href="https://doi.org/10.1049/cp.2014.1116" property="url">DOI</a><br/>
             <a href="https://jahid1081.github.io/itks5440/pubs/mahmud2014.pdf" property="encoding">PDF</a>
           </li>
           <li typeof="ScholarlyArticle" resource="cv:#paper-lrc-2013">
@@ -261,9 +332,7 @@
       </section>
     </div>
 
-    <p class="footer">
-      This HTML reflects the data in the OWL/Turtle at the links above. Structured data is exposed via RDFa attributes (schema.org &amp; FOAF).
-    </p>
+    
   </div>
 </body>
 </html>
