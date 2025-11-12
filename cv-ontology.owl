@@ -11,7 +11,6 @@
   xmlns:dcterms="http://purl.org/dc/terms/"
   xmlns:prov="http://www.w3.org/ns/prov#">
 
-  <!-- Ontology header -->
   <owl:Ontology rdf:about="">
     <rdfs:label>CV Ontology and Data for M Jahidul Islam</rdfs:label>
     <dcterms:creator>M Jahidul Islam</dcterms:creator>
@@ -27,7 +26,8 @@
     <rdf:type rdf:resource="http://schema.org/Person"/>
     <schema:name>M Jahidul Islam</schema:name>
     <schema:birthDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1987-12-06</schema:birthDate>
-    <foaf:mbox rdf:resource="mailto:jahid1081@gmail.com"/>
+    <!-- Privacy: store only mbox_sha1sum -->
+    <foaf:mbox_sha1sum>4b339131670c3d53f1762e30caedcbfba5fa8f21</foaf:mbox_sha1sum>
     <schema:knowsLanguage>Bengali</schema:knowsLanguage>
     <schema:knowsLanguage>English</schema:knowsLanguage>
     <schema:knowsLanguage>Finnish</schema:knowsLanguage>
@@ -44,10 +44,12 @@ In my previous roles as Access Control Analyst and Business Analyst, I successfu
 
 My passion for technology extends beyond banking. I taught Computer Science for Cambridge IGCSE O and A Levels at Scholastica, one of Bangladesh's most esteemed English-medium schools, and I served as an Undergraduate Teaching Assistant at North South University in Bangladesh. With proficiency in C++, Python, Java, MATLAB, and Microsoft Office, I am dedicated to harnessing technology to enhance business processes and educational frameworks, particularly cybersecurity and IT governance.</foaf:bio>
 
-    <!-- Language proficiencies -->
-    <cv:hasLanguageProficiency rdf:resource="#engC1"/>
-    <cv:hasLanguageProficiency rdf:resource="#finA1"/>
-    <cv:hasLanguageProficiency rdf:resource="#benNative"/>
+    <!-- Skills -->
+    <schema:skills>C++</schema:skills>
+    <schema:skills>Python</schema:skills>
+    <schema:skills>Java</schema:skills>
+    <schema:skills>MATLAB</schema:skills>
+    <schema:skills>Microsoft Office</schema:skills>
 
     <!-- Credentials -->
     <schema:hasCredential rdf:resource="#cred-msc"/>
@@ -61,6 +63,8 @@ My passion for technology extends beyond banking. I taught Computer Science for 
     <schema:hasOccupation rdf:resource="#role-ucb-executive-officer"/>
     <schema:hasOccupation rdf:resource="#role-ucb-access-analyst"/>
     <schema:hasOccupation rdf:resource="#role-ucb-business-analyst"/>
+    <schema:hasOccupation rdf:resource="#role-scholastica-teacher"/>
+    <schema:hasOccupation rdf:resource="#role-nsu-uta"/>
     <schema:worksFor rdf:resource="#UCB"/>
   </rdf:Description>
 
@@ -76,7 +80,6 @@ My passion for technology extends beyond banking. I taught Computer Science for 
   <schema:DefinedTerm rdf:about="#B2"><schema:name>B2</schema:name><schema:inDefinedTermSet rdf:resource="#CEFR"/></schema:DefinedTerm>
   <schema:DefinedTerm rdf:about="#C1"><schema:name>C1</schema:name><schema:inDefinedTermSet rdf:resource="#CEFR"/></schema:DefinedTerm>
   <schema:DefinedTerm rdf:about="#C2"><schema:name>C2</schema:name><schema:inDefinedTermSet rdf:resource="#CEFR"/></schema:DefinedTerm>
-  <!-- Custom term for mother tongue -->
   <schema:DefinedTerm rdf:about="#Native">
     <schema:name>Native (mother tongue)</schema:name>
     <schema:inDefinedTermSet rdf:resource="#CEFR"/>
@@ -117,6 +120,7 @@ My passion for technology extends beyond banking. I taught Computer Science for 
   <schema:Organization rdf:about="#UCB">
     <schema:name>United Commercial Bank PLC</schema:name>
     <schema:url rdf:resource="https://www.ucb.com.bd/"/>
+    <schema:sameAs rdf:resource="https://dbpedia.org/resource/United_Commercial_Bank_(Bangladesh)"/>
     <schema:address>
       <schema:PostalAddress>
         <schema:addressLocality>Dhaka</schema:addressLocality>
@@ -149,6 +153,7 @@ My passion for technology extends beyond banking. I taught Computer Science for 
 
   <schema:CollegeOrUniversity rdf:about="#DU">
     <schema:name>University of Dhaka</schema:name>
+    <schema:sameAs rdf:resource="https://dbpedia.org/resource/University_of_Dhaka"/>
     <schema:url rdf:resource="https://www.du.ac.bd/"/>
     <schema:address>
       <schema:PostalAddress>
@@ -160,6 +165,7 @@ My passion for technology extends beyond banking. I taught Computer Science for 
 
   <schema:CollegeOrUniversity rdf:about="#JYU">
     <schema:name>University of Jyväskylä</schema:name>
+    <schema:sameAs rdf:resource="https://dbpedia.org/resource/University_of_Jyväskylä"/>
     <schema:url rdf:resource="https://www.jyu.fi/"/>
     <schema:address>
       <schema:PostalAddress>
@@ -180,7 +186,7 @@ My passion for technology extends beyond banking. I taught Computer Science for 
     </schema:address>
   </schema:EducationalOrganization>
 
-  <!-- Organizational roles -->
+  <!-- UCB organizational roles -->
   <schema:EmployeeRole rdf:about="#role-ucb-officer">
     <schema:roleName>Officer</schema:roleName>
     <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2018-01</schema:startDate>
@@ -202,7 +208,7 @@ My passion for technology extends beyond banking. I taught Computer Science for 
     <schema:memberOf rdf:resource="#UCB"/>
   </schema:EmployeeRole>
 
-  <!-- Functional roles -->
+  <!-- UCB functional roles -->
   <schema:EmployeeRole rdf:about="#role-ucb-access-analyst">
     <schema:roleName>Access Control Analyst</schema:roleName>
     <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2021-11</schema:startDate>
@@ -217,7 +223,22 @@ My passion for technology extends beyond banking. I taught Computer Science for 
     <schema:memberOf rdf:resource="#UCB"/>
   </schema:EmployeeRole>
 
-  <!-- Systems -->
+  <!-- Teaching & academic roles -->
+  <schema:EmployeeRole rdf:about="#role-scholastica-teacher">
+    <schema:roleName>Teacher (Cambridge IGCSE O &amp; A Levels, Computer Science)</schema:roleName>
+    <schema:memberOf rdf:resource="#Scholastica"/>
+    <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2012-08</schema:startDate>
+    <schema:endDate   rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2017-06</schema:endDate>
+  </schema:EmployeeRole>
+
+  <schema:EmployeeRole rdf:about="#role-nsu-uta">
+    <schema:roleName>Undergraduate Teaching Assistant</schema:roleName>
+    <schema:memberOf rdf:resource="#NSU"/>
+    <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2011-01</schema:startDate>
+    <schema:endDate   rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2011-12</schema:endDate>
+  </schema:EmployeeRole>
+
+  <!-- Systems & services -->
   <schema:SoftwareApplication rdf:about="#OracleFlexcube">
     <schema:name>Oracle FLEXCUBE Universal Banking</schema:name>
     <schema:description>Core banking platform by Oracle Financial Services.</schema:description>
@@ -289,7 +310,6 @@ My passion for technology extends beyond banking. I taught Computer Science for 
     <schema:name>In-house analysis and design</schema:name>
     <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2018-01</schema:startDate>
     <schema:endDate   rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2021-11</schema:endDate>
-    <!-- designed systems (not prov:used) -->
     <schema:about rdf:resource="#UDispatch"/>
     <schema:about rdf:resource="#CRMD_Legal_Module"/>
     <schema:about rdf:resource="#Credit_Rating_Module"/>
@@ -328,7 +348,7 @@ My passion for technology extends beyond banking. I taught Computer Science for 
     <schema:recognizedBy rdf:resource="#BCC"/>
   </schema:EducationalOccupationalCredential>
 
-  <!-- Publications -->
+  <!-- Publications with PDF encodings -->
   <schema:ScholarlyArticle rdf:about="#paper-ankur-2014">
     <schema:name>ANKUR: Bangla Online Character Recognition</schema:name>
     <schema:author rdf:resource="#jahid"/>
@@ -340,18 +360,36 @@ My passion for technology extends beyond banking. I taught Computer Science for 
       </schema:PropertyValue>
     </schema:identifier>
     <schema:url rdf:resource="https://doi.org/10.1049/cp.2014.1116"/>
+    <schema:encoding>
+      <schema:MediaObject>
+        <schema:contentUrl rdf:resource="https://jahid1081.github.io/itks5440/pubs/mahmud2014.pdf"/>
+        <schema:encodingFormat>application/pdf</schema:encodingFormat>
+      </schema:MediaObject>
+    </schema:encoding>
   </schema:ScholarlyArticle>
 
   <schema:ScholarlyArticle rdf:about="#paper-lrc-2013">
     <schema:name>Low Resolution Camera for Human Detection and Tracking</schema:name>
     <schema:author rdf:resource="#jahid"/>
     <schema:datePublished>2013</schema:datePublished>
+    <schema:encoding>
+      <schema:MediaObject>
+        <schema:contentUrl rdf:resource="https://jahid1081.github.io/itks5440/pubs/Low_Resolution_Camera_for_Human_Detectio.pdf"/>
+        <schema:encodingFormat>application/pdf</schema:encodingFormat>
+      </schema:MediaObject>
+    </schema:encoding>
   </schema:ScholarlyArticle>
 
   <schema:ScholarlyArticle rdf:about="#paper-rt-2013">
     <schema:name>Real-time Human Detection and Tracking Using a Very Low Resolution Camera</schema:name>
     <schema:author rdf:resource="#jahid"/>
     <schema:datePublished>2013</schema:datePublished>
+    <schema:encoding>
+      <schema:MediaObject>
+        <schema:contentUrl rdf:resource="https://jahid1081.github.io/itks5440/pubs/au-poon.pdf"/>
+        <schema:encodingFormat>application/pdf</schema:encodingFormat>
+      </schema:MediaObject>
+    </schema:encoding>
   </schema:ScholarlyArticle>
 
 </rdf:RDF>
